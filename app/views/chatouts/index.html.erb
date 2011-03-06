@@ -1,0 +1,29 @@
+<div id="container">
+	<h1>Acme IntraWebs Service Status Page</h1>
+	<br />
+	<h3>This page lists any recent service outages or issues our customers should be aware of</h3
+
+
+	<br />
+
+	<div id='left-col'>
+		<table>
+		  <tr>
+		    <th></th>
+		    <th></th>
+		    <th></th>
+		  </tr>
+
+		<% @chatouts.each do |chatout| %>
+		  <tr>
+		    <td><%= image_tag(chatout['user']['photoUrl'], :size => "45x45", :class => 'profile-thumb' ) %></td>
+		    <td valign="top"><%= link_to chatout['user']['name'], chatout['user']['url'], {:class => 'user-name'}  %>&nbsp;
+		<span class='message-body'><%= chatout['body'] %></span>
+		   <br /> <span class='created-date'><%= time_ago_in_words(chatout['createdDate']) %> ago</span></td>
+		  </tr>
+		<% end %>
+		</table> 
+	</div>
+	<br />
+</div>
+

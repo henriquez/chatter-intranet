@@ -1,0 +1,17 @@
+<%= form_for(@chatout) do |f| %>
+  <% if @chatout.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@chatout.errors.count, "error") %> prohibited this chatout from being saved:</h2>
+
+      <ul>
+      <% @chatout.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
