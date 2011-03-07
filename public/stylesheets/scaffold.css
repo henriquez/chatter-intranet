@@ -98,25 +98,30 @@ a.user-name {
 }
 
 div.comments {
-  bottom-bottom-style: solid;
-  border-color: #333;
   margin-left: 65px; 
+  border-radius:5px;
+  background-color: PowderBlue ; 
+  margin-top: 15px;
+  padding:8px;
 }
 
 div.feed-item-row {
 	margin-top: 15px;
 }	
 
-.comments {
-	border-radius:5px;
-	background-color: LightBlue ; /* #eff7fa; */
-    margin-top: 15px;
-    padding:8px;
+div.comment-row {
+  bottom-bottom-style: solid;
+  border-color: #333;
+  margin-bottom: 10px;	
 }
 	
 span.created-date {
-	color: grey;
+	color: DimGrey;
 }
+
+span.bold {
+	font-weight: 600;
+}	
 
 span#service-status {
 	color: green;

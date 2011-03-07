@@ -60,7 +60,6 @@ class Chatout < ActiveRecord::Base
   # return array of items  with #chatout
   def self.extract_chatout_items(input)
     output = []
-    #logger.info input.inspect
     input['items'].each do |item|
       next unless item['rawBody'] =~ /#servicestatus/
       # addressing bugs in returned URLs:
@@ -71,7 +70,6 @@ class Chatout < ActiveRecord::Base
       logger.info item['createdDate'].class
       output << item 
     end
-    #logger.info output.inspect
     output
   end
   

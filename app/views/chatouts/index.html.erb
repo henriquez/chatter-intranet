@@ -23,7 +23,7 @@
 	      <%= image_tag(chatout['user']['photoUrl'], :size => "45x45", :class => 'profile-thumb' ) %>
 	    </div>
 	    <div class='message span-12 last'>
-		  <%= link_to chatout['user']['name'], chatout['user']['url'], {:class => 'user-name'}  %>&nbsp;
+		  <span class='user-name bold'><%= chatout['user']['name']   %></span>&nbsp;
 		  <span class='message-body'><%= chatout['body'] %></span>
 		  <br /> <span class='created-date'><%= time_ago_in_words(chatout['createdDate']) %> ago</span>
 		</div>	 
@@ -34,8 +34,10 @@
 			  <!-- comments -->
 			  <% chatout['comments']['comments'].each do |comment| %>
 				<div class='comment-row span-12 last'>
+			      <div class='user-thumb span-2'>
 					<%= image_tag(comment['user']['photoUrl'], :size => "45x45", :class => 'profile-thumb' ) %>
-					    <%= link_to comment['user']['name'], comment['user']['url'], {:class => 'user-name'}  %>&nbsp;
+				  </div>	
+					    <span class='user-name bold'><%= comment['user']['name']%></span>&nbsp;
 					<span class='message-body'><%= comment['body'] %></span>
 					   <br /> <span class='created-date'><%= time_ago_in_words(comment['createdDate']) %> ago</span>
 			   </div>
