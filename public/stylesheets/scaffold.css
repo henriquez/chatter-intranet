@@ -97,10 +97,10 @@ a.user-name {
 	
 }
 
-div.comment-row {
+div.comments {
   bottom-bottom-style: solid;
   border-color: #333;
-  
+  margin-left: 65px; 
 }
 
 div.feed-item-row {
@@ -108,7 +108,7 @@ div.feed-item-row {
 }	
 
 .comments {
-	background-color: #eff7fa;
+	background-color: LightBlue ; /* #eff7fa; */
     margin-top: 15px;
     padding:8px;
 }

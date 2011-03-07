@@ -3,6 +3,7 @@ class CreateUserTable < ActiveRecord::Migration
     create_table :users do |t|
       t.string :name
       t.string :instance_url
+      t.string :identiy_url
       t.string :access_token
       t.string :refresh_token
       t.string :client_id
@@ -12,6 +13,7 @@ class CreateUserTable < ActiveRecord::Migration
       t.string :login_url
       t.string :organization_id
       t.string :user_id
+    end  
   end
 
   def self.down

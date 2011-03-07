@@ -10,11 +10,31 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110306185102) do
+ActiveRecord::Schema.define(:version => 20110307060054) do
 
   create_table "chatouts", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "sessions", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string "name"
+    t.string "instance_url"
+    t.string "identiy_url"
+    t.string "access_token"
+    t.string "refresh_token"
+    t.string "client_id"
+    t.string "user_name"
+    t.string "password"
+    t.string "crypted_password"
+    t.string "login_url"
+    t.string "organization_id"
+    t.string "user_id"
   end
 
 end

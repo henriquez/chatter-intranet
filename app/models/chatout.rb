@@ -51,8 +51,8 @@ class Chatout < ActiveRecord::Base
           
   # Poll the org and write any new feed-items with the #chatout
   # tag to the db
-  def self.poll
-    response = TEST #do_get('/feeds/news/005D0000001GMWE/feed-items')
+  def self.get_feed
+    response = do_get('/feeds/news/005D0000001GMWE/feed-items')
     extract_chatout_items(response)
   end
   
@@ -60,6 +60,7 @@ class Chatout < ActiveRecord::Base
   # return array of items  with #chatout
   def self.extract_chatout_items(input)
     output = []
+    #logger.info input.inspect
     input['items'].each do |item|
       next unless item['rawBody'] =~ /#servicestatus/
       # addressing bugs in returned URLs:
@@ -67,9 +68,11 @@ class Chatout < ActiveRecord::Base
       item['user']['url'] = DOMAIN + "/" + item['user']['url']
       # strip the hashtag out of the item
       item['body'].gsub!(/#servicestatus/, '')
-      item['createdDate'] = DateTime.parse(item['createdDate'])
+      logger.info item['createdDate'].class
+      #item['createdDate'] = DateTime.parse(item['createdDate'])
       output << item 
     end
+    #logger.info output.inspect
     output
   end
   
@@ -78,17 +81,16 @@ class Chatout < ActiveRecord::Base
   
       # Generic response parser and error handler for gets
     def self.do_get(uri)
-      token = Session.token
-      #token = '00DD0000000FPIV!AQ4AQGVqSzSXGLf3ZHFsDOawo.8QmzimR2J1eeRHiJsjIgF9CUSqKWFjBxx801GMl3bVyiYwr0zZ84Pp0C3EjO833s77V5lk'
-      options = { :headers => { 'Authorization'   => "OAuth #{token}",
+      # user = User.find_first_by_name('admin')
+      user = User.new
+      user.access_token = '00DD0000000FPIV!AQ4AQAwDVqEObp9cigvz2bIlPcUwpgb0awNmCSzocUpqER_Zz2uSl6ba62DpYL_NjfOnD5m8JBGLBZMXFeJTXkOskHI1BPPl'
+      options = { :headers => { 'Authorization'   => "OAuth #{user.access_token}",
                                  'Content-Type'    => "application/json",
                                  'X-PrettyPrint'   => "1"
                                }
                  }
-      logger.info options
-      logger.info uri
-        response = get(uri, options).response 
-      raise StandardError, "status=#{response.header.code}" if response.header.code != "200"
-      Crack::JSON.parse(response.body)
+      response = get(uri, options).response 
+      raise StandardError, "status=#{response.header.code}" if response.header.code != "200"  
+      Crack::JSON.parse(response.body) 
     end
 end

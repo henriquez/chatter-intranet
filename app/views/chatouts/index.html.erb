@@ -1,5 +1,5 @@
-<div class="span-24">
-	<h1>Acme IntraWebs Service Status Page</h1>
+<div class="span-24 last">
+	<h1>Acme Web Hosting Service Status Page</h1>
 	<br />
 
 	<h3>The service is currently <span id="service-status" class="loud large">UP</span></h3>
@@ -9,12 +9,16 @@
 </div>
 
 	<br />
-
-
-<div id="feed-items" class="span-18">
+<% if flash[:notice] %>
+	<div id="error_explanation">
+	  <%= flash[:notice] %>
+	</div>
+<% end %>
+	
+<div id="feed-items" class="span-18 last">
 
   <% @chatouts.each do |chatout| %>
-    <div class="feed-item-row span-18">
+    <div class="feed-item-row span-18 last">
 		<div class='user-thumb span-2'>
 	      <%= image_tag(chatout['user']['photoUrl'], :size => "45x45", :class => 'profile-thumb' ) %>
 	    </div>
@@ -26,7 +30,7 @@
 	
 	   <% if chatout['comments']['comments'].length > 0 %>
 
-	     <div class='comments span-12 prepend-1   last'>	
+	     <div class='comments span-12 last'>	
 			  <!-- comments -->
 			  <% chatout['comments']['comments'].each do |comment| %>
 				<div class='comment-row span-12 last'>
@@ -43,5 +47,9 @@
  
 </div>
 
+<div class="span-24">
+  <br />
+  <%= link_to 'start Oauth', sessions_oauth_url %>
+</div>
 
 

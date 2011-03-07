@@ -4,10 +4,16 @@ class ChatoutsController < ApplicationController
   # GET /chatouts
   # Display chats with #chatout hashtag
   def index 
-    @chatouts = Chatout.poll
+    @chatouts = Chatout.get_feed
+  #rescue Exception => e
+    # if exception is due to bad token, do refresh token flow
+    #logger.error e
+    #flash[:notice] = e
+    #Session.refresh_token(user) 
   end
 
-
+  def old
+  end  
 
 
 
