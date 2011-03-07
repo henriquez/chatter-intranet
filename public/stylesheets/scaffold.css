@@ -59,19 +59,21 @@ div.field, div.actions {
 /* end scaffold code */
 
 
-div#container {
-  margin: 20px;	
+div.container {
+  margin: 30px;	
   width:800px;
 }
 
-div#left-col {
-  margin: 20px;
+div#feed-items {
+
   border-radius:5px;
   background-color: white;
   width:600px;
-  padding:6px;
+  padding:12px;
 }
+
 img.profile-thumb {}
+
 span.message-body {
 	font-family: Arial, Helvetica;
 	font-size: 14px;
@@ -82,6 +84,7 @@ span.message-body {
 	margin-right: 0px;
 	margin-top: 0px;
 }
+
 a.user-name { 
 		font-family: Arial, Helvetica;
 	font-size: 14px;
@@ -93,6 +96,28 @@ a.user-name {
 	margin-top: 0px;
 	
 }
+
+div.comment-row {
+  bottom-bottom-style: solid;
+  border-color: #333;
+  
+}
+
+div.feed-item-row {
+	margin-top: 15px;
+}	
+
+.comments {
+	background-color: #eff7fa;
+    margin-top: 15px;
+    padding:8px;
+}
+	
 span.created-date {
 	color: grey;
 }
+
+span#service-status {
+	color: green;
+	
+}	

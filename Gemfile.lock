@@ -28,11 +28,16 @@ GEM
       activemodel (= 3.0.4)
       activesupport (= 3.0.4)
     activesupport (3.0.4)
+    addressable (2.2.4)
     arel (2.0.8)
     builder (2.1.2)
     crack (0.1.8)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    faraday (0.5.5)
+      addressable (~> 2.2.4)
+      multipart-post (~> 1.1.0)
+      rack (>= 1.1.0, < 2)
     httparty (0.7.4)
       crack (= 0.1.8)
     i18n (0.5.0)
@@ -42,6 +47,11 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    multi_json (0.0.5)
+    multipart-post (1.1.0)
+    oauth2 (0.1.1)
+      faraday (~> 0.5.0)
+      multi_json (~> 0.0.4)
     polyglot (0.3.1)
     rack (1.2.1)
     rack-mount (0.6.13)
@@ -73,5 +83,6 @@ PLATFORMS
 
 DEPENDENCIES
   httparty
+  oauth2
   rails (= 3.0.4)
   sqlite3
