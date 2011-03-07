@@ -10,7 +10,7 @@
 
 	<br />
 <% if flash[:notice] %>
-	<div id="error_explanation">
+	<div class="error span-24 last">
 	  <%= flash[:notice] %>
 	</div>
 <% end %>
@@ -30,7 +30,7 @@
 	
 	   <% if chatout['comments']['comments'].length > 0 %>
 
-	     <div class='comments span-12 last'>	
+	     <div class='comments span-12 clear last'>	
 			  <!-- comments -->
 			  <% chatout['comments']['comments'].each do |comment| %>
 				<div class='comment-row span-12 last'>

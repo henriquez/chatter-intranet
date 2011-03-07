@@ -108,6 +108,7 @@ div.feed-item-row {
 }	
 
 .comments {
+	border-radius:5px;
 	background-color: LightBlue ; /* #eff7fa; */
     margin-top: 15px;
     padding:8px;

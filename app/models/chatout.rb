@@ -69,7 +69,6 @@ class Chatout < ActiveRecord::Base
       # strip the hashtag out of the item
       item['body'].gsub!(/#servicestatus/, '')
       logger.info item['createdDate'].class
-      #item['createdDate'] = DateTime.parse(item['createdDate'])
       output << item 
     end
     #logger.info output.inspect
