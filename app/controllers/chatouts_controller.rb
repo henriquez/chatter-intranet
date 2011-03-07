@@ -5,10 +5,10 @@ class ChatoutsController < ApplicationController
   # Display chats with #chatout hashtag
   def index 
     @chatouts = Chatout.get_feed
-  #rescue Exception => e
+  rescue Exception => e
     # if exception is due to bad token, do refresh token flow
-    #logger.error e
-    #flash[:notice] = e
+    logger.error e
+    flash[:notice].now = e.message[0..200]
     #Session.refresh_token(user) 
   end
 

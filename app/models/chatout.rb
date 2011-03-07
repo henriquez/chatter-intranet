@@ -87,7 +87,7 @@ class Chatout < ActiveRecord::Base
                                }
                  }
       response = get(uri, options).response 
-      raise StandardError, "status=#{response.header.code}" if response.header.code != "200"  
+      raise StandardError, "status=#{response.header.code} Not Authorized - this means a bad token" if response.header.code != "200"  
       Crack::JSON.parse(response.body) 
     end
 end
