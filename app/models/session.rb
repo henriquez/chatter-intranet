@@ -5,14 +5,19 @@ class Session
   
   # App and remote app definition settings
   APP_DOMAIN = 'lhenriquez-ltm' # must match remote access app callback URI
-  CLIENT_SECRET = '6687918166780982352'
-  CLIENT_ID = '3MVG9y6x0357HleefWmAEp6ZoEM5EsDYXpyugyMLCC6DxOpP7Dh8QFODKs.Q.bvR00UDmLULVojuSM8sPysA5'
+  # below is remote access app on blitz01 for lh@me.com
+  CLIENT_SECRET = '7480376495512621760'
+  CLIENT_ID = "3MVG9PhR6g6B7ps4dYH40OOCrbBO0slGjt8nXC_8cl7dxucij1.ZpmW0GShFppvWmwNIkJJoSop2FJE0ERBim"
+  # below is remote access app on production for 172deorg@logan.net
+  # CLIENT_SECRET = '6687918166780982352'
+  #CLIENT_ID = '3MVG9y6x0357HleefWmAEp6ZoEM5EsDYXpyugyMLCC6DxOpP7Dh8QFODKs.Q.bvR00UDmLULVojuSM8sPysA5'
   FORMAT = 'json'  # this is default
   
   # salesforce environment settings
   TOKEN_ENDPOINT = '/services/oauth2/token'
   AUTHORIZE_PATH = '/services/oauth2/authorize'
-  SFDC_DOMAIN = 'https://login.salesforce.com'   #"https://na1-blitz01.soma.salesforce.com"
+  SFDC_DOMAIN = 'https://na1-blitz01.soma.salesforce.com' 
+  #SFDC_DOMAIN = 'https://login.salesforce.com'   #"https://na1-blitz01.soma.salesforce.com"
   base_uri "#{SFDC_DOMAIN}/services/data/v22.0/chatter"
   
   
