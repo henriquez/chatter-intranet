@@ -6,9 +6,6 @@ end
 
 class SessionsController < ApplicationController
   
-  DOMAIN = 'lhenriquez-ltm' # must match remote access app callback URI
-  CLIENT_SECRET = '6687918166780982352'
-  CLIENT_ID = '3MVG9y6x0357HleefWmAEp6ZoEM5EsDYXpyugyMLCC6DxOpP7Dh8QFODKs.Q.bvR00UDmLULVojuSM8sPysA5'
   
   
   # Oauth Flow step 1
@@ -34,7 +31,7 @@ class SessionsController < ApplicationController
       :grant_type => 'authorization_code'
       )
       # store these four in User and create new user if necessary
-    User.create_or_update(access_token) 
+    User.create_or_update_context_user(access_token) 
     redirect_to root_path # send user to the status page
   end
   
@@ -43,18 +40,18 @@ class SessionsController < ApplicationController
   
   def client
     OAuth2::Client.new(
-    CLIENT_ID, 
-    CLIENT_SECRET, 
-    :site => 'https://login.salesforce.com', 
-    :authorize_path =>'/services/oauth2/authorize', 
-    :access_token_path => '/services/oauth2/token'
+    Session::CLIENT_ID, 
+    Session::CLIENT_SECRET, 
+    :site => Session::SFDC_DOMAIN, 
+    :authorize_path => Session::AUTHORIZE_PATH, 
+    :access_token_path => Session::TOKEN_ENDPOINT
     )
   end
   
   # must match the callback url in the remote access application
   # exactly.
   def redirect_uri
-    "https://#{DOMAIN}/sessions/callback"
+    "https://#{Session::APP_DOMAIN}/sessions/callback"
   end
   
 end
