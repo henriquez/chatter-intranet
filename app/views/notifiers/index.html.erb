@@ -1,0 +1,21 @@
+<h1>Listing notifiers</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @notifiers.each do |notifier| %>
+  <tr>
+    <td><%= link_to 'Show', notifier %></td>
+    <td><%= link_to 'Edit', edit_notifier_path(notifier) %></td>
+    <td><%= link_to 'Destroy', notifier, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Notifier', new_notifier_path %>

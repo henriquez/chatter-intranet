@@ -10,9 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110308183312) do
+ActiveRecord::Schema.define(:version => 20110312001640) do
+
+  create_table "app_stores", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "chatouts", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notifiers", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -30,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20110308183312) do
     t.string "login_url"
     t.string "organization_id"
     t.string "user_id"
+    t.string "email"
   end
 
 end

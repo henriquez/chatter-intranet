@@ -1,5 +1,14 @@
+<h2> Hi <%= @user.name %> </h2>
 <p id="notice"><%= notice %></p>
 
+<p class="large"> You have authorized demo apps to access your data in organization <%= @user.organization_id %> as <%= @user.user_name %>.  You must really trust us, thanks!
+</p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<ul>
+	<li><%= link_to "Notifier application", notifiers_path %></li>
+	<li>Intranet application</li>
+</ul>	
+
+
+
+

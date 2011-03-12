@@ -31,8 +31,10 @@ class SessionsController < ApplicationController
       :grant_type => 'authorization_code'
       )
       # store these four in User and create new user if necessary
-    User.create_or_update_context_user(access_token) 
-    redirect_to root_path # send user to the status page
+    user = User.create_or_update_context_user(access_token)
+    user.save_identity
+    redirect_to user_path(user.id) # tell user they're authorized, 
+    # then they can pick from a list of available apps.
   end
   
   

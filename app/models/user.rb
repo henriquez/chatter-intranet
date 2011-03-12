@@ -10,6 +10,14 @@ class User < ActiveRecord::Base
     user
   end  
   
+  def save_identity
+    id = Session.get_user_identity(self)
+    logger.info id.inspect
+    self.name = id['display_name']
+    self.organization_id = id['organization_id']
+    self.user_name = id['username']
+    self.save!
+  end
   
   def self.context_user
     user = User.find_by_name('admin')

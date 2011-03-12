@@ -1,4 +1,8 @@
 MarSprintDemo::Application.routes.draw do
+  resources :notifiers
+
+  resources :app_stores
+
   resources :users
 
   resources :chatouts
@@ -58,7 +62,7 @@ MarSprintDemo::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => "welcome#index"
-  root :to => 'chatouts#index'
+  root :to => 'app_stores#index'
   
   # See how all your routes lay out with "rake routes"
 

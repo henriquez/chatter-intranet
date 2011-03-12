@@ -44,6 +44,14 @@ class Session
   end
   
   
+  # using identity service, return basic user info
+  def self.get_user_identity(user)
+    # SFDC issues a redirect, but httparty follows them by default
+    response = do_get(user, user.identity_url)
+    Crack::JSON.parse(response.body)  
+  end
+  
+  
   # General purpose get with access token.
   def self.do_get(user, uri)
     options = { :headers => { 'Authorization'   => "OAuth #{user.access_token}",
@@ -53,5 +61,6 @@ class Session
                }
     get(uri, options).response 
   end  
+  
 
 end
