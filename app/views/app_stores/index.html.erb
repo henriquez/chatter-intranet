@@ -1,7 +1,9 @@
 <h1>Demo Apps</h1>
 
-<p>To start demo apps, first authorize us to access your information in your org</p>
+<p>Select an application</p>
 
-<h3>
-  <%= link_to "I'm a trusting individual, Authorize!", sessions_oauth_url %>
-</h3>
+<ul>
+	<li><%= link_to "Notifier application", sessions_oauth_url(:app => "notifiers") %></li>
+	<li>Intranet application</li>
+</ul>	
+

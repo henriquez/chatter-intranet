@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110312001640) do
+ActiveRecord::Schema.define(:version => 20110313201149) do
 
   create_table "app_stores", :force => true do |t|
     t.datetime "created_at"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20110312001640) do
     t.string "organization_id"
     t.string "user_id"
     t.string "email"
+    t.string "profile_thumbnail_url"
   end
 
 end

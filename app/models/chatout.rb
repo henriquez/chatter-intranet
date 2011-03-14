@@ -4,12 +4,16 @@ class Chatout < ActiveRecord::Base
           
   # Poll the org and write any new feed-items with the #chatout
   # tag to the db
-  def self.get_feed
-    
-    response = prepare_query('/feeds/news/005D0000001GMWE/feed-items')
+  def self.get_service_status_feed(user) 
+    response = prepare_query("/chatter/feeds/news/#{user.user_id}/feed-items", user)
     extract_chatout_items(response)
   end
   
+  
+  def self.get_news_feed(user)
+    prepare_query("/chatter/feeds/news/#{user.user_id}/feed-items", user)
+  end
+    
   
   # return array of items  with #chatout
   def self.extract_chatout_items(input)
@@ -31,12 +35,11 @@ class Chatout < ActiveRecord::Base
   private
   
       # Generic response parser and error handler for gets
-    def self.prepare_query(uri)
-      user = User.context_user
-      #user = User.new
-      #user.access_token = '00DD0000000FPIV!AQ4AQAwDVqEObp9cigvz2bIlPcUwpgb0awNmCSzocUpqER_Zz2uSl6ba62DpYL_NjfOnD5m8JBGLBZMXFeJTXkOskHI1BPPl'
+    def self.prepare_query(uri, user)
+      logger.info "Getting uri=#{uri}"
       response = Session.do_get(user, uri)
       if response.header.code != "200"
+        logger.error response.header.inspect
         # assume the token expired and try to refresh the token
         logger.info user.inspect
         user = Session.get_new_token(user)

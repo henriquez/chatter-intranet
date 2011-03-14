@@ -1,14 +1,14 @@
 <h2> Hi <%= @user.name %> </h2>
 <p id="notice"><%= notice %></p>
 
+<img src="<%= @user.profile_thumbnail_url %>"/>
 <p class="large"> You have authorized demo apps to access your data in organization <%= @user.organization_id %> as <%= @user.user_name %>.  You must really trust us, thanks!
 </p>
 
-<ul>
-	<li><%= link_to "Notifier application", notifiers_path %></li>
-	<li>Intranet application</li>
-</ul>	
-
+Here's your news feed<br />
+<div>
+  <%=	@out.inspect %>
+</div>
 
 
 

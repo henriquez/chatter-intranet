@@ -3,23 +3,21 @@ require 'httparty'
 class Session 
   include HTTParty
   
-  # App and remote app definition settings
-  APP_DOMAIN = 'lhenriquez-ltm' # must match remote access app callback URI
-  # below is remote access app on blitz01 for lh@me.com
-  CLIENT_SECRET = '7480376495512621760'
-  CLIENT_ID = "3MVG9PhR6g6B7ps4dYH40OOCrbBO0slGjt8nXC_8cl7dxucij1.ZpmW0GShFppvWmwNIkJJoSop2FJE0ERBim"
-  # below is remote access app on production for 172deorg@logan.net
-  # CLIENT_SECRET = '6687918166780982352'
-  #CLIENT_ID = '3MVG9y6x0357HleefWmAEp6ZoEM5EsDYXpyugyMLCC6DxOpP7Dh8QFODKs.Q.bvR00UDmLULVojuSM8sPysA5'
+  # pick an environment listed in sfdc_config.yml
+  sfdc_env = 'production' # set this based on keys in sfdc_config
+  sfdc = YAML.load(File.read(File.expand_path('../../../config/sfdc_config.yml', __FILE__)))
+  APP_DOMAIN = sfdc[sfdc_env]['app_domain']
+  CLIENT_ID = sfdc[sfdc_env]['client_id']
+  CLIENT_SECRET = sfdc[sfdc_env]['client_secret']
+  SFDC_DOMAIN = sfdc[sfdc_env]['sfdc_domain']
+
   FORMAT = 'json'  # this is default
   
-  # salesforce environment settings
+  # salesforce identity service endpoins - these don't change
   TOKEN_ENDPOINT = '/services/oauth2/token'
   AUTHORIZE_PATH = '/services/oauth2/authorize'
-  SFDC_DOMAIN = 'https://na1-blitz01.soma.salesforce.com' 
-  #SFDC_DOMAIN = 'https://login.salesforce.com'   #"https://na1-blitz01.soma.salesforce.com"
-  base_uri "#{SFDC_DOMAIN}/services/data/v22.0/chatter"
   
+
   
   # Given a refresh token, update that user with a fresh
   # access token.  Returns the refreshed user
@@ -54,6 +52,7 @@ class Session
   
   # General purpose get with access token.
   def self.do_get(user, uri)
+    base_uri "#{user.instance_url}/services/data/v22.0"
     options = { :headers => { 'Authorization'   => "OAuth #{user.access_token}",
                                'Content-Type'    => "application/json",
                                'X-PrettyPrint'   => "1"
@@ -63,4 +62,17 @@ class Session
   end  
   
 
+  # body must be a Ruby hash, it will get form encoded.
+  def self.do_post(user, uri, body)
+    base_uri "#{user.instance_url}/services/data/v22.0"
+    options = { :headers => { 'Authorization'   => "OAuth #{user.access_token}"
+                             }
+               }
+    options.merge!( :body => body )             
+    response = post(uri, options) 
+    if response.header.code != "200" || response.header.code != "201"
+        Rails.logger.error response.header.inspect
+    end                
+  end
+  
 end
