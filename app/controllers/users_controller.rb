@@ -8,10 +8,10 @@ class UsersController < ApplicationController
     current_user = @user
     # get an Account in the blitz org Joe Salesy is in - proves cross-org 
     # access works without a remote access app (stduser@eeorg.net/ test1234)
-    @out = Session.do_get(current_user, "/sobjects/").response.body.response.body
+    #@out = Session.do_get(current_user, "/sobjects").response.body
     #@out = Chatout.get_news_feed(@user)
     #@out = Session.do_get(current_user, "/chatter/users/005D0000001GYrLIAW").response.body
-    #Notifier.notify(@user)
+    Notifier.notify(@user)
   end
 
 

@@ -4,7 +4,7 @@ class Session
   include HTTParty
   
   # pick an environment listed in sfdc_config.yml
-  sfdc_env = 'production' # set this based on keys in sfdc_config
+  sfdc_env = 'blitz01' # set this based on keys in sfdc_config
   sfdc = YAML.load(File.read(File.expand_path('../../../config/sfdc_config.yml', __FILE__)))
   APP_DOMAIN = sfdc[sfdc_env]['app_domain']
   CLIENT_ID = sfdc[sfdc_env]['client_id']
