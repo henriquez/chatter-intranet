@@ -12,11 +12,18 @@ class SessionsController < ApplicationController
   # User clicks link to this method which in turns redirects
   # the browser to salesforce to authorize this app.
   def oauth
-    cookies.permanent.signed[:app] = params[:app]
+    cookies[:app] = {
+      :value => params[:app],
+      :expires => 1.year.from_now,
+      :domain => '/'
+    }
+
+    logger.info "params >>>>>>>>>"
+    logger.info cookies[:app]
     redirect_to client.web_server.authorize_url(
     :response_type => 'code',
     :redirect_uri => redirect_uri # this must match R.A. App so no params
-  )
+    )
   end
   
   
@@ -33,12 +40,15 @@ class SessionsController < ApplicationController
       )
       # store these four in User and create new user if necessary
     user = User.create_or_update_context_user(access_token)
-    cookies.permanent.signed[:user_id] = = user.id
+    cookies.permanent[:user_id] = user.id
+    
     user.save_identity unless user.name # get identity if not already there.
     # redirect to a controller based on which application the user
-    #clicked on the app-stores index page
-    redirect_to eval(cookies[:app] + '_path(user.id)')
-      
+    # clicked on the app-stores index page
+    logger.info "cookies>>>>>>"
+    logger.info cookies[:app]
+    #redirect_to eval(cookies[:app] + '_path(user.id)')
+    redirect_to notifier_path(user.id)  
   end
   
   

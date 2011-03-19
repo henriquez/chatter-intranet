@@ -3,7 +3,7 @@
 <p>Select an application</p>
 
 <ul>
-	<li><%= link_to "Notifier application", sessions_oauth_url(:app => "notifiers") %></li>
-	<li><%= link_to "Intranet hosting feed", sessions_oauth_url(:app => "chaouts") %></li>
+	<li><%= link_to "Notifier application", sessions_oauth_url, :id => 'notifier' %></li>
+	<li><%= link_to "Intranet hosting feed", sessions_oauth_url, :id => 'chatout' %></li>
 </ul>	
 
