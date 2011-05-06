@@ -39,7 +39,7 @@ class SessionsController < ApplicationController
     user = User.create_or_update_context_user(access_token)
     user.save_identity unless user.name # get identity if not already there.
     # in case someone hits the oauth url and tries to auth a different user
-    user.delete! unless user.user_name == 'qa_app@eeorg.net'
+    user.delete! unless User.is_qa_app_user?(user)
     redirect_to qas_path # display publisher and feed
   end
   

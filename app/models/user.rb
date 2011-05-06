@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
   
+  QA_APP_USER_NAME = 'qa_app@eeorg.net'
+  
+  
   # will create a new user and save their access token and other info
   # whenever anyone initiates the oauth process.
   def self.create_or_update_context_user(access_token)
@@ -14,6 +17,17 @@ class User < ActiveRecord::Base
   end  
   
   
+  def self.qa_app_user
+    User.find_by_user_name(QA_APP_USER_NAME)
+  end
+  
+  
+  # defines whether we're dealing with the app-as-user in the org.
+  def self.is_qa_app_user?(user)
+    user.user_name == QA_APP_USER_NAME
+  end
+  
+  
   def save_identity
     id = Session.get_user_identity(self)
     logger.info id.inspect
@@ -26,6 +40,7 @@ class User < ActiveRecord::Base
     self.save!
   end
   
+      
       
   
 end

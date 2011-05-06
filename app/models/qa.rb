@@ -3,11 +3,12 @@
 # Salesforce.  
 class Qa 
   
+  GROUP_ID = ENV['GROUP_ID']
           
   # Poll the org and write any new feed-items with the #chatout
   # tag to the db
-  def self.get_service_status_feed(user) 
-    response = prepare_query("/chatter/feeds/news/#{user.user_id}/feed-items", user)
+  def self.get_group_feed
+    response = prepare_query("/chatter/feeds/record/#{GROUP_ID}/feed-items", user)
     extract_chatout_items(response)
   end
   
