@@ -3,13 +3,13 @@ require 'httparty'
 class Session 
   include HTTParty
   
-  # pick an environment listed in sfdc_config.yml
-  sfdc_env = 'blitz01' # set this based on keys in sfdc_config
-  sfdc = YAML.load(File.read(File.expand_path('../../../config/sfdc_config.yml', __FILE__)))
-  APP_DOMAIN = sfdc[sfdc_env]['app_domain']
-  CLIENT_ID = sfdc[sfdc_env]['client_id']
-  CLIENT_SECRET = sfdc[sfdc_env]['client_secret']
-  SFDC_DOMAIN = sfdc[sfdc_env]['sfdc_domain']
+  # .bashrc must have these set in the development environment
+  # on use heroku config:add GITHUB_USERNAME=joesmith to set production values
+  # see http://devcenter.heroku.com/articles/config-vars
+  APP_DOMAIN = ENV['QA_DEMO_APP_DOMAIN']
+  CLIENT_ID = ENV['QA_DEMO_KEY']
+  CLIENT_SECRET = ENV['QA_DEMO_SECRET']
+  SFDC_DOMAIN = ENV['QA_DEMO_LOGIN_URL']
 
   FORMAT = 'json'  # this is default
   
