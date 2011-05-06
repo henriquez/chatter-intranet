@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   
+  # will create a new user and save their access token and other info
+  # whenever anyone initiates the oauth process.
   def self.create_or_update_context_user(access_token)
     user = User.find_by_identity_url(access_token.params['id'])
     user = User.new if !user  

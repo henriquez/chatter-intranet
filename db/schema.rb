@@ -12,7 +12,26 @@
 
 ActiveRecord::Schema.define(:version => 20110313201149) do
 
-# no schema required - using Chatter as the db.
+  # Generally chatter is being used as the source for all feed related 
+  # items and users. This is only here so that the app can store the 
+  # access and refresh tokens for the "user" that represents this app
+  # in the salesforce org. 
+  create_table "users", :force => true do |t|
+    t.string "name"
+    t.string "instance_url"
+    t.string "identity_url"
+    t.string "access_token"
+    t.string "refresh_token"
+    t.string "client_id"
+    t.string "user_name"
+    t.string "password"
+    t.string "crypted_password"
+    t.string "login_url"
+    t.string "organization_id"
+    t.string "user_id"
+    t.string "email"
+    t.string "profile_thumbnail_url"
+  end
 
 
 

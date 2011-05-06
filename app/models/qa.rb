@@ -1,5 +1,7 @@
-
-class Chatout < ActiveRecord::Base
+# not an ActiveRecord class because all the feed related data is stored
+# in Salesforce.  This class just does the API calls to interact with 
+# Salesforce.  
+class Qa 
   
           
   # Poll the org and write any new feed-items with the #chatout

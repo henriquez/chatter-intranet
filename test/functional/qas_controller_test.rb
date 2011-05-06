@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ChatoutsControllerTest < ActionController::TestCase
+class QasControllerTest < ActionController::TestCase
   setup do
     @chatout = chatouts(:one)
   end
