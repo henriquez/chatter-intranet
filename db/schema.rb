@@ -12,36 +12,8 @@
 
 ActiveRecord::Schema.define(:version => 20110313201149) do
 
-  create_table "app_stores", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+# no schema required - using Chatter as the db.
 
-  create_table "chatouts", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
-  create_table "notifiers", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "users", :force => true do |t|
-    t.string "name"
-    t.string "instance_url"
-    t.string "identity_url"
-    t.string "access_token"
-    t.string "refresh_token"
-    t.string "client_id"
-    t.string "user_name"
-    t.string "password"
-    t.string "crypted_password"
-    t.string "login_url"
-    t.string "organization_id"
-    t.string "user_id"
-    t.string "email"
-    t.string "profile_thumbnail_url"
-  end
 
 end
