@@ -9,7 +9,6 @@ class Qa
   # tag to the db
   def self.get_group_feed(user)
     response = prepare_query("/chatter/feeds/record/#{GROUP_ID}/feed-items", user)
-    Rails.logger.info response.inspect
     massage_output_for_view(response)
   end
   

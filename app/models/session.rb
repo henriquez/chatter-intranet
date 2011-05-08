@@ -68,7 +68,9 @@ class Session
     options = { :headers => { 'Authorization'   => "OAuth #{user.access_token}"
                              }
                }
-    options.merge!( :body => body )             
+    options.merge!( :body => body )    
+    
+    Rails.logger.info "posting to #{uri}"         
     response = post(uri, options) 
     if response.header.code != "200" || response.header.code != "201"
         Rails.logger.error response.header.inspect

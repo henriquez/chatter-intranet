@@ -1,4 +1,4 @@
-<%= form_tag("/chatter/feeds/record/#{Qa::GROUP_ID}/feed-items") do %>
+<%= form_tag(qas_path) do %>
 
   <div class="span-24 last">
 	  <% if flash[:error] %>
@@ -8,15 +8,15 @@
 	  <% end %>
   </div>
 
-  <div class="span-6">	
+  <div class="span-4">	
     <%= label_tag(:name, "Your Name:") %>
   </div>
-  <div class="span-12 last">
-    <%= text_field_tag(:name, "", :maxlength => 25, :size => 25, :class => "") %>
+  <div class="span-14 last">
+    <%= text_field_tag(:name, "", :maxlength => 35, :size => 35, :class => "") %>
   </div>
 
   <div class="span-18">
-    <%= text_area_tag 'body', nil, :rows => 5, :cols => 20 %>
+    <%= text_area_tag 'text', nil, :rows => 5, :cols => 20 %>
   <div>
 	
   <div class="span-4 last actions">
