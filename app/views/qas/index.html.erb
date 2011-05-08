@@ -1,11 +1,9 @@
 <div class="span-24 last">
-	<h1>Acme Web Hosting Service Status Page</h1>
+	<h1>Chat with the Chatter REST API team</h1>
 	<br />
 
-	<h3>The service is currently <span id="service-status" class="loud large">UP</span></h3>
+	<h4>Post your question or suggestion here and we'll try to answer it.</h4>
 	
-	
-	<h3>Recent service outages and other issues our customers should be aware of</h3
 </div>
 
 	<br />
@@ -21,7 +19,7 @@
 	  <% @chatouts.each do |chatout| %>
 	    <div class="feed-item-row span-18 last">
 			<div class='user-thumb span-2'>
-		      <%= image_tag(chatout['user']['photoUrl'], :size => "45x45", :class => 'profile-thumb' ) %>
+		      
 		    </div>
 		    <div class='message span-12 last'>
 			  <span class='user-name bold'><%= chatout['user']['name']   %></span>&nbsp;
@@ -36,7 +34,7 @@
 				  <% chatout['comments']['comments'].each do |comment| %>
 					<div class='comment-row span-12 last'>
 				      <div class='user-thumb span-2'>
-						<%= image_tag(comment['user']['photoUrl'], :size => "45x45", :class => 'profile-thumb' ) %>
+						
 					  </div>	
 						    <span class='user-name bold'><%= comment['user']['name']%></span>&nbsp;
 						<span class='message-body'><%= comment['body']['text'] %></span>

@@ -3,35 +3,33 @@
 # Salesforce.  
 class Qa 
   
-  GROUP_ID = ENV['GROUP_ID']
+  GROUP_ID = ENV['QA_DEMO_GROUP_ID']
           
   # Poll the org and write any new feed-items with the #chatout
   # tag to the db
-  def self.get_group_feed
+  def self.get_group_feed(user)
     response = prepare_query("/chatter/feeds/record/#{GROUP_ID}/feed-items", user)
-    extract_chatout_items(response)
+    Rails.logger.info response.inspect
+    massage_output_for_view(response)
   end
   
-  
-  def self.get_news_feed(user)
-    prepare_query("/chatter/feeds/news/#{user.user_id}/feed-items", user)
-  end
     
-  
-  # return array of items  with #chatout
-  def self.extract_chatout_items(input)
+  # doesn't display feed items that are tagged #private.  This lets questions
+  # that a user doesn't want displayed to the world get placed into the group
+  # but not redisplayed out to the world.  
+  def self.massage_output_for_view(input)
     output = []
     input['items'].each do |item|
-      next unless item['rawBody'] =~ /#servicestatus/
-      # addressing bugs in returned URLs:
-      # link to user profile doesn't include domain
-      item['user']['url'] = SFDC_DOMAIN + "/" + item['user']['url']
-      # strip the hashtag out of the item
-      item['body'].gsub!(/#servicestatus/, '')
-      logger.info item['createdDate'].class
-      output << item 
+      next if item['body']['text'] =~ /#private/  # don't display private items
+      output << item
     end
     output
+  end
+      
+  
+  # urls don't include the domain so we have to add it
+  def self.complete_url(url)
+     SFDC_DOMAIN + "/" + url
   end
   
   
@@ -39,12 +37,12 @@ class Qa
   
       # Generic response parser and error handler for gets
     def self.prepare_query(uri, user)
-      logger.info "Getting uri=#{uri}"
+      Rails.logger.info "Getting uri=#{uri}"
       response = Session.do_get(user, uri)
       if response.header.code != "200"
-        logger.error response.header.inspect
+        Rails.logger.error response.header.inspect
         # assume the token expired and try to refresh the token
-        logger.info user.inspect
+        Rails.logger.info user.inspect
         user = Session.get_new_token(user)
         response = Session.do_get(user, uri)  
         raise StandardError, "status=#{response.header.code}, uri=#{uri}" if response.header.code != "200"        
