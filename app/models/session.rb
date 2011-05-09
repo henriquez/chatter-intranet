@@ -10,7 +10,8 @@ class Session
   CLIENT_ID = ENV['QA_DEMO_KEY']
   CLIENT_SECRET = ENV['QA_DEMO_SECRET']
   SFDC_DOMAIN = ENV['QA_DEMO_LOGIN_URL']
-
+  VERSION = "v22.0" # 172
+  
   FORMAT = 'json'  # this is default
   
   # salesforce identity service endpoins - these don't change
@@ -52,7 +53,7 @@ class Session
   
   # General purpose get with access token.
   def self.do_get(user, uri)
-    base_uri "#{user.instance_url}/services/data/v22.0"
+    base_uri "#{user.instance_url}/services/data/#{VERSION}"
     options = { :headers => { 'Authorization'   => "OAuth #{user.access_token}",
                                'Content-Type'    => "application/json",
                                'X-PrettyPrint'   => "1"
@@ -63,14 +64,13 @@ class Session
   
 
   # body must be a Ruby hash, it will get form encoded.
-  def self.do_post(user, uri, body)
-    base_uri "#{user.instance_url}/services/data/v22.0"
+  def self.do_post(user, uri, text)
+    base_uri "#{user.instance_url}/services/data/#{VERSION}"
     options = { :headers => { 'Authorization'   => "OAuth #{user.access_token}"
                              }
                }
-    options.merge!( :body => body )    
-    
-    Rails.logger.info "posting to #{uri}"         
+    options.merge!( :body => { :text => text } )    
+    Rails.logger.info "posting to #{user.instance_url}/services/data/#{VERSION}#{uri}"         
     response = post(uri, options) 
     if response.header.code != "200" || response.header.code != "201"
         Rails.logger.error response.header.inspect

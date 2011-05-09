@@ -5,8 +5,6 @@ class QasController < ApplicationController
   # Display publisher and most recent questions from the group feed
   def index 
     @chatouts = Qa.get_group_feed(User.qa_app_user) # TODO need to set user from something.
-    logger.info "chatouts"
-    logger.info @chatouts.inspect
   rescue Exception => e
     # if exception is due to bad token, do refresh token flow
     logger.error e
@@ -24,7 +22,8 @@ class QasController < ApplicationController
   # knew how to use the token.
   def create
     uri = "/chatter/feeds/record/#{Qa::GROUP_ID}/feed-items"
-    Session.do_post(User.qa_app_user, uri, params["text"])
+    body = "from #{params[:name]} : #{params["text"]}"
+    Session.do_post(User.qa_app_user, uri, body)
     @chatouts = Qa.get_group_feed(User.qa_app_user) # get the feed
     render :action => 'index' # show the Q&A page again
   end

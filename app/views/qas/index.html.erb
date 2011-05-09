@@ -42,7 +42,7 @@
 					  <% chatout['comments']['comments'].each do |comment| %>
 						<div class='comment-row span-12 last'>
 					      <div class='user-thumb span-2'>
-						
+						    <% image_cheater(comment['user']['lastName']) %>
 						  </div>	
 							    <span class='user-name bold'><%= comment['user']['name']%></span>&nbsp;
 							<span class='message-body'><%= comment['body']['text'] %></span>

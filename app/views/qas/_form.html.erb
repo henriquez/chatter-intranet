@@ -15,12 +15,13 @@
     <%= text_field_tag(:name, "", :maxlength => 35, :size => 35, :class => "") %>
   </div>
 
-  <div class="span-18">
-    <%= text_area_tag 'text', nil, :rows => 5, :cols => 20 %>
-  <div>
+  <div class="span-14">
+    <%= text_area_tag 'text', nil, :rows => 5, :cols => 25, :id => "postbody" %>
+  </div>
 	
-  <div class="span-4 last actions">
-    <%= submit_tag("Post" ) %>
+  <div class="span-2 last">
+    <button name="comment" type="submit"  >Post</button>
+	
   </div>
 
 <% end %>

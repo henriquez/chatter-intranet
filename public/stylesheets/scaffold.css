@@ -127,3 +127,9 @@ span#service-status {
 	color: green;
 	
 }	
+
+textarea#postbody {
+	width: 500px;
+	height: 100px;
+	font-size: 14px;
+}	
