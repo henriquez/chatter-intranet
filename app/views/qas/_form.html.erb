@@ -11,16 +11,16 @@
   <div class="span-4">	
     <%= label_tag(:name, "Your Name:") %>
   </div>
-  <div class="span-14 last">
-    <%= text_field_tag(:name, "", :maxlength => 35, :size => 35, :class => "") %>
+  <div id="post-name-field" class="span-14 last">
+    <%= text_field_tag(:name, "", :maxlength => 35, :size => 35, :id => "post-name-field") %>
   </div>
 
-  <div class="span-14">
-    <%= text_area_tag 'text', nil, :rows => 5, :cols => 25, :id => "postbody" %>
+  <div id="post-text-area" class=" span-14">
+    <%= text_area_tag 'text', nil,  :id => "post-text-area" %>
   </div>
 	
-  <div class="span-2 last">
-    <button name="comment" type="submit"  >Post</button>
+  <div class="span-1 last">
+    <button name="comment" type="submit" id="post-button" >Post</button>
 	
   </div>
 

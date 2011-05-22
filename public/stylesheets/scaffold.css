@@ -128,8 +128,14 @@ span#service-status {
 	
 }	
 
-textarea#postbody {
-	width: 500px;
-	height: 100px;
-	font-size: 14px;
+div#post-text-area, div#post-name-field {
+	margin: 10px 0 10px 0px;
+}
+
+	
+textarea#post-text-area {
+	font-size: 16px;
+	line-height: 22px;
+	width: 450px;
+	border: 1px solid #00FFFF;
 }	
