@@ -10,6 +10,8 @@ gem 'httparty'
 gem 'oauth2'
 gem 'jquery-rails', '>= 0.2.6'
 
+gem 'rake', '~> 0.8.7'  # due to bug in 0.9 
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
