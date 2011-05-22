@@ -12,6 +12,9 @@ class Session
   SFDC_DOMAIN = ENV['QA_DEMO_LOGIN_URL']
   VERSION = "v22.0" # 172
   
+  CA_CERT_FILE = '/usr/lib/ssl/certs/ca-certificates.crt' # on heroku
+  # note that dev ignores cert verification
+  
   FORMAT = 'json'  # this is default
   
   # salesforce identity service endpoins - these don't change

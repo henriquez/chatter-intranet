@@ -48,11 +48,17 @@ class SessionsController < ApplicationController
   
   def client
     OAuth2::Client.new(
-    Session::CLIENT_ID, 
-    Session::CLIENT_SECRET, 
-    :site => Session::SFDC_DOMAIN, 
-    :authorize_path => Session::AUTHORIZE_PATH, 
-    :access_token_path => Session::TOKEN_ENDPOINT
+      Session::CLIENT_ID, 
+      Session::CLIENT_SECRET, 
+      :site => {
+        :ssl => {
+            :verify  => OpenSSL::SSL::VERIFY_PEER,
+            :ca_file => Session::CA_CERT_FILE
+            },
+        :url => Session::SFDC_DOMAIN
+        },   
+      :authorize_path => Session::AUTHORIZE_PATH, 
+      :access_token_path => Session::TOKEN_ENDPOINT
     )
   end
   
