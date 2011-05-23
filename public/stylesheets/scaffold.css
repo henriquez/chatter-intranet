@@ -60,17 +60,31 @@ div.field, div.actions {
 
 
 div.container {
-  margin: 30px;	
+  margin: 0px, 30px, 30px 30px;	
   width:800px;
 }
 
-div#feed-items {
+div#feed-items, div#publisher {
 
   border-radius:5px;
   background-color: white;
   width:600px;
   padding:12px;
 }
+
+div#feed-items {
+  background-color: white;
+  margin-bottom: 30px;
+}
+
+div#publisher {
+  background-color: SkyBlue;	
+  opacity: .8;
+}
+
+div#post-ask-button {
+  margin-top: 8px; /* to align with the textarea default margin */
+}	
 
 img.profile-thumb {}
 
@@ -100,10 +114,20 @@ a.user-name {
 div.comments {
   margin-left: 65px; 
   border-radius:5px;
-  background-color: PowderBlue ; 
+  background-color: SkyBlue; 
   margin-top: 15px;
   padding:8px;
 }
+
+div#front-header {
+  background-color: SkyBlue;	
+  opacity: .8;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  width:600px;
+  padding:12px;
+}
+
 
 div.feed-item-row {
 	margin-top: 15px;
@@ -133,7 +157,7 @@ div#post-text-area, div#post-name-field {
 }
 
 	
-textarea#post-text-area {
+textarea#post-text-area, input#post-name-field {
 	font-size: 16px;
 	line-height: 22px;
 	width: 450px;

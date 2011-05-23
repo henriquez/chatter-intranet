@@ -8,7 +8,7 @@ class Qa
   # Poll the org and write any new feed-items with the #chatout
   # tag to the db
   def self.get_group_feed(user)
-    response = prepare_query("/chatter/feeds/record/#{GROUP_ID}/feed-items", user)
+    response = Session.do_get(user, "/chatter/feeds/record/#{GROUP_ID}/feed-items")
     massage_output_for_view(response)
   end
   
@@ -33,22 +33,6 @@ class Qa
   
   
   private
-  
-      # Generic response parser and error handler for gets
-    def self.prepare_query(uri, user)
-      Rails.logger.info "Getting uri=#{uri}"
-      response = Session.do_get(user, uri)
-      if response.header.code != "200"
-        Rails.logger.error response.header.inspect
-        # assume the token expired and try to refresh the token
-        Rails.logger.info user.inspect
-        user = Session.get_new_token(user)
-        response = Session.do_get(user, uri)  
-        raise StandardError, "status=#{response.header.code}, uri=#{uri}" if response.header.code != "200"        
-      end 
-      Crack::JSON.parse(response.body)  
-    end
-    
     
     
     

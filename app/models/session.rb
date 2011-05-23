@@ -36,8 +36,11 @@ class Session
               }   
     Rails.logger.info "Getting refresh token..."    
     response = post(uri, options).response
-    Rails.logger.info ">> status code was #{response.header.code}"
-    Rails.logger.info ">>\n#{response.body.inspect}"
+    if response.header.code != "200"
+      raise StandardError, "Error: Failed on refresh token retry: status=#{response.header.code}, uri=#{uri}" 
+    else
+      Rails.logger.info "..got refresh token"
+    end  
     response = Crack::JSON.parse(response.body)
     user.access_token = response['access_token']
     # note there is no new refresh token returned.
@@ -56,28 +59,41 @@ class Session
   
   # General purpose get with access token.
   def self.do_get(user, uri)
+    Rails.logger.info "Getting uri=#{uri}"
     base_uri "#{user.instance_url}/services/data/#{VERSION}"
     options = { :headers => { 'Authorization'   => "OAuth #{user.access_token}",
                                'Content-Type'    => "application/json",
                                'X-PrettyPrint'   => "1"
                              }
                }
-    get(uri, options).response 
+    response = get(uri, options).response 
+    if response.header.code != "200" 
+      # if exception is due to bad token(401), do refresh token flow
+      Rails.logger.error response.header.inspect
+      get_new_token(User.qa_app_user) # saves new access token to user
+      response = get(uri, options).response
+    end
+    Crack::JSON.parse(response.body)  
   end  
+  
   
 
   # body must be a Ruby hash, it will get form encoded.
   def self.do_post(user, uri, text)
+    Rails.logger.info "Posting uri=#{uri}"
     base_uri "#{user.instance_url}/services/data/#{VERSION}"
     options = { :headers => { 'Authorization'   => "OAuth #{user.access_token}"
                              }
                }
-    options.merge!( :body => { :text => text } )    
-    Rails.logger.info "posting to #{user.instance_url}/services/data/#{VERSION}#{uri}"         
+    options.merge!( :body => { :text => text } )          
     response = post(uri, options) 
-    if response.header.code != "200" || response.header.code != "201"
-        Rails.logger.error response.header.inspect
-    end                
+    if response.header.code != "201"
+      # if exception is due to bad token(401), do refresh token flow
+      Rails.logger.error response.header.inspect
+      get_new_token(User.qa_app_user) # saves new access token to user
+      response = post(uri, options)
+    end
+    Crack::JSON.parse(response.body)               
   end
   
 end

@@ -1,27 +1,40 @@
-<%= form_tag(qas_path) do %>
+<div id="publisher" class="span-24 last">
+	<%= form_tag(qas_path) do %>
 
-  <div class="span-24 last">
-	  <% if flash[:error] %>
-	    <div id="error_explanation">
-	      <h2><%= flash[:error] %></h2>
+	  <div class="span-20 last">
+		  <% if flash[:error] %>
+		    <div id="error_explanation">
+		      <h2><%= flash[:error] %></h2>
+		    </div>
+		  <% end %>
+	  </div>
+
+	  <div class="span-4">	
+	    <%= label_tag(:name, "Your Name") %>
+	  </div>
+	  <div id="post-name-field" class="span-14 last">
+	    <%= text_field_tag(:name, "", :maxlength => 35, :size => 35, :id => "post-name-field") %>
+	  </div>
+
+
+	  
+	  <div class="span-24 last">	
+	    <%= label_tag(:name, "Your Question") %>
+	  </div>
+	
+
+		
+	  <div id="post-text-area" class="span-24 last">
+		<div class="span-13">
+	      <%= text_area_tag 'text', nil,  :id => "post-text-area" %>
 	    </div>
-	  <% end %>
-  </div>
-
-  <div class="span-4">	
-    <%= label_tag(:name, "Your Name:") %>
-  </div>
-  <div id="post-name-field" class="span-14 last">
-    <%= text_field_tag(:name, "", :maxlength => 35, :size => 35, :id => "post-name-field") %>
-  </div>
-
-  <div id="post-text-area" class=" span-14">
-    <%= text_area_tag 'text', nil,  :id => "post-text-area" %>
-  </div>
+	    <div class="span-1 last" id="post-ask-button">
+        	<button name="comment" type="submit" id="post-button" class="cssbutton large blue" >&nbsp;Ask&nbsp;</button>
+        </div>	
+	  </div>
 	
-  <div class="span-1 last">
-    <button name="comment" type="submit" id="post-button" >Post</button>
-	
-  </div>
 
-<% end %>
+
+
+	<% end %>
+</div>	

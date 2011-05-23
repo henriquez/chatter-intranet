@@ -9,7 +9,7 @@ jQuery(function() {
 
 
  	// Styling calls
-	$('button').button();
+	//$('button').button();
 });
 
 
