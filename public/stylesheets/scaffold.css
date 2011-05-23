@@ -13,7 +13,8 @@ pre {
 }
 
 
-a:link, a:visited {text-decoration:none; color:#222;}
+a:link {text-decoration:none; color: DarkBlue;} 
+a:visited {text-decoration:none; color:DarkBlue;}
 a:hover {text-decoration:none; color:#08c;}
 
 

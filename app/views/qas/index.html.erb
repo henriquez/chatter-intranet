@@ -2,7 +2,7 @@
 	<h2 class="span-24 last">Chat with the Chatter API team</h2>
 	<br />
 
-	<h4 class="span-24 last">Post your question or suggestion here and we'll try to answer it.</h4>
+	<h4 class="span-15 last">Post your question or suggestion here and we'll try to answer it.  You might want to <%= link_to "check out the wiki", "https://github.com/developerforce/Chatter-REST-API/wiki" %> to see if your question has already been answered there.</h4>
 	
 </div>
 
@@ -42,7 +42,7 @@
 					  <% chatout['comments']['comments'].each do |comment| %>
 						<div class='comment-row span-12 last'>
 					      <div class='user-thumb span-2'>
-						    <% image_cheater(comment['user']['lastName']) %>
+						    <%= image_cheater(comment['user']['lastName']) %>
 						  </div>	
 							    <span class='user-name bold'><%= sanitize comment['user']['name']%></span>&nbsp;
 							<span class='message-body'><%= auto_link(sanitize comment['body']['text']) %></span>
