@@ -113,8 +113,8 @@ a.user-name {
 	
 }
 
-div.comments {
-  margin-left: 65px; 
+div.comment-row {
+  margin-left: 55px; 
   border-radius:5px;
   background-color: SkyBlue; 
   margin-top: 15px;
@@ -135,7 +135,7 @@ div.feed-item-row {
 	margin-top: 15px;
 }	
 
-div.comment-row {
+div.comment {
   bottom-bottom-style: solid;
   border-color: #333;
   margin-bottom: 10px;	
@@ -164,4 +164,6 @@ textarea#post-text-area, input#post-name-field {
 	line-height: 22px;
 	width: 450px;
 	border: 1px solid #00FFFF;
-}	
+}
+
+div.message, div.comment { margin-left:14px; }	

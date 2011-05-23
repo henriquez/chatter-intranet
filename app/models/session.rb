@@ -21,7 +21,7 @@ class Session
   TOKEN_ENDPOINT = '/services/oauth2/token'
   AUTHORIZE_PATH = '/services/oauth2/authorize'
   
-
+  class PostTooLargeError < StandardError; end
   
   # Given a refresh token, update that user with a fresh
   # access token.  Returns the refreshed user
@@ -80,6 +80,7 @@ class Session
 
   # body must be a Ruby hash, it will get form encoded.
   def self.do_post(user, uri, text)
+    raise PostTooLargeError, "Post may not exceed 1000 characters" if text.length > 1000
     Rails.logger.info "Posting uri=#{uri}"
     base_uri "#{user.instance_url}/services/data/#{VERSION}"
     options = { :headers => { 'Authorization'   => "OAuth #{user.access_token}"

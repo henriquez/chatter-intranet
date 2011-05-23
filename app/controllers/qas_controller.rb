@@ -16,8 +16,11 @@ class QasController < ApplicationController
     uri = "/chatter/feeds/record/#{Qa::GROUP_ID}/feed-items"
     body = "from #{params[:name]} : #{params["text"]}"
     Session.do_post(User.qa_app_user, uri, body)
+  rescue Session::PostTooLargeError => e
+    flash.now[:error] = e.message
+  ensure
     @chatouts = Qa.get_group_feed(User.qa_app_user) # get the feed
-    render :action => 'index' # show the Q&A page again
+    render :action => 'index' # show the Q&A page again  
   end
   
 end
