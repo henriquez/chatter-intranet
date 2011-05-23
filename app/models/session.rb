@@ -73,7 +73,6 @@ class Session
       get_new_token(User.qa_app_user) # saves new access token to user
       response = get(uri, options).response
     end
-    Rails.logger.info response.body.inspect
     Crack::JSON.parse(response.body)  
   end  
   

@@ -1,9 +1,9 @@
-body { background-color: gainsboro; color: #333; }
+body { background-color: gainsboro; color: #222; }
 
 body, p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size:   13px;
-  line-height: 18px;
+  font-family: "Helvetica Neue", helvetica, arial, sans-serif;
+  font-size:   14px;
+  line-height: 20px;
 }
 
 pre {
@@ -12,9 +12,10 @@ pre {
   font-size: 11px;
 }
 
-a { color: #000; }
-a:visited { color: #666; }
-a:hover { color: #fff; background-color:#000; }
+
+a:link, a:visited {text-decoration:none; color:#222;}
+a:hover {text-decoration:none; color:#08c;}
+
 
 div.field, div.actions {
   margin-bottom: 10px;

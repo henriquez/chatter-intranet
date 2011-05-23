@@ -30,8 +30,8 @@
 		      
 			    </div>
 			    <div class='message span-12 last'>
-				  <span class='user-name bold'><%= chatout['user']['name']   %></span>&nbsp;
-				  <span class='message-body'><%= chatout['body']['text'] %></span>
+				  <span class='user-name bold'><%= sanitize chatout['user']['name']   %></span>&nbsp;
+				  <span class='message-body'><%= auto_link(sanitize chatout['body']['text'] ) %></span>
 				  <br /> <span class='created-date'><%= time_ago_in_words(chatout['createdDate']) %> ago</span>
 				</div>	 
 	
@@ -44,8 +44,8 @@
 					      <div class='user-thumb span-2'>
 						    <% image_cheater(comment['user']['lastName']) %>
 						  </div>	
-							    <span class='user-name bold'><%= comment['user']['name']%></span>&nbsp;
-							<span class='message-body'><%= comment['body']['text'] %></span>
+							    <span class='user-name bold'><%= sanitize comment['user']['name']%></span>&nbsp;
+							<span class='message-body'><%= auto_link(sanitize comment['body']['text']) %></span>
 							   <br /> <span class='created-date'><%= time_ago_in_words(comment['createdDate']) %> ago</span>
 					   </div>
 				    <% end %>
