@@ -1,6 +1,6 @@
 module QasHelper
   
-  # puts in static images for known users to work around the lack of un-authenticated URLs
+  # Hack: puts in static images for known users to work around the lack of un-authenticated URLs
   # for static assets.
   def image_cheater(user_lastname)
     if user_lastname == 'Henriquez'

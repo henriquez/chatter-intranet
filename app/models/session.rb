@@ -10,18 +10,19 @@ class Session
   CLIENT_ID = ENV['QA_DEMO_KEY']
   CLIENT_SECRET = ENV['QA_DEMO_SECRET']
   SFDC_DOMAIN = ENV['QA_DEMO_LOGIN_URL']
-  VERSION = "v22.0" # 172
+  VERSION = "v22.0" # Winter '11 release
   
   CA_CERT_FILE = '/usr/lib/ssl/certs/ca-certificates.crt' # on heroku
   # note that dev ignores cert verification
   
-  FORMAT = 'json'  # this is default
+  FORMAT = 'json'  # this is default, can also be 'xml'
   
-  # salesforce identity service endpoins - these don't change
+  # salesforce identity service endpoints
   TOKEN_ENDPOINT = '/services/oauth2/token'
   AUTHORIZE_PATH = '/services/oauth2/authorize'
   
   class PostTooLargeError < StandardError; end
+  
   
   # Given a refresh token, update that user with a fresh
   # access token.  Returns the refreshed user
@@ -49,6 +50,7 @@ class Session
   end
   
   
+  
   # using identity service, return basic user info
   def self.get_user_identity(user)
     # SFDC issues a redirect, but httparty follows them by default
@@ -57,7 +59,7 @@ class Session
   end
   
   
-  # General purpose get with access token.
+  # General purpose get with error handling and retry for expired token
   def self.do_get(user, uri)
     Rails.logger.info "Getting uri=#{uri}"
     base_uri "#{user.instance_url}/services/data/#{VERSION}"
@@ -84,8 +86,9 @@ class Session
   end  
   
   
-
-  # body must be a Ruby hash, it will get form encoded.
+  
+  # General purpose post with error handling and retry for expired token
+  # text is a string, it will get form encoded downstream
   def self.do_post(user, uri, text)
     raise PostTooLargeError, "Post may not exceed 1000 characters" if text.length > 1000
     Rails.logger.info "Posting uri=#{uri}"
