@@ -67,11 +67,18 @@ class Session
                              }
                }
     response = get(uri, options).response 
-    if response.header.code != "200" 
+    if response.header.code == "401" 
       # if exception is due to bad token(401), do refresh token flow
-      Rails.logger.error response.header.inspect
-      get_new_token(User.qa_app_user) # saves new access token to user
-      response = get(uri, options).response
+      user = User.qa_app_user # get the user-as-application
+      get_new_token(user) # saves new access token to user
+      options = { :headers => { 'Authorization'   => "OAuth #{user.access_token}",
+                               'Content-Type'    => "application/json",
+                               'X-PrettyPrint'   => "1"
+                             }
+               } # populate options with new access token
+      response = get(uri, options).response # redo the request
+    elsif response.header.code != '200' # failed for some other reason
+      raise StandardError, "unknown failure getting uri with #{response.header.inspect}"
     end
     Crack::JSON.parse(response.body)  
   end  
@@ -88,12 +95,21 @@ class Session
                }
     options.merge!( :body => { :text => text } )          
     response = post(uri, options) 
-    if response.header.code != "201"
+    
+    if response.header.code == "401" 
       # if exception is due to bad token(401), do refresh token flow
-      Rails.logger.error response.header.inspect
-      get_new_token(User.qa_app_user) # saves new access token to user
-      response = post(uri, options)
+      user = User.qa_app_user # get the user-as-application
+      get_new_token(user) # saves new access token to user
+      options = { :headers => { 'Authorization'   => "OAuth #{user.access_token}",
+                               'Content-Type'    => "application/json",
+                               'X-PrettyPrint'   => "1"
+                             }
+               } # populate options with new access token
+      response = post(uri, options) # redo the request
+    elsif response.header.code != '201' # failed for some other reason
+      raise StandardError, "unknown failure getting uri with #{response.header.inspect}"
     end
+    
     Crack::JSON.parse(response.body)               
   end
   
