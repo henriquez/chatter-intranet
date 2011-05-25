@@ -24,7 +24,7 @@ class QasController < ApplicationController
   end
   
   
-  def send
+  def sendmail
     user = User.new :email => 'logan@henriquez.net', :name => 'logan'
     reply = 'That was the dumbest questions ever..'
     UserMailer.notification(user, reply)

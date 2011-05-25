@@ -32,10 +32,5 @@ class Qa
   end
   
   
-  private
-    
-    
-    
-    
     
 end
