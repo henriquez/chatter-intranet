@@ -28,6 +28,7 @@ class QasController < ApplicationController
     user = User.new :email => 'logan@henriquez.net', :name => 'logan'
     reply = 'That was the dumbest questions ever..'
     UserMailer.notification(user, reply)
+    render :nothing => true
   end  
   
 end
