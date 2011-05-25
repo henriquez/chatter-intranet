@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Hi <%= @user.name %>. The Chatter API team at Salesforce posted an answer to your question or suggestion. </h1>
+    
+    <h3>The reply was</h3>
+    <p>
+      <%= @reply %>
+    </p>
+    <hr />
+    <hr />
+    <p>
+      Thanks for using the Chatter API.  To ask another question visit <%= @url %>.
+    </p>
+    <p>Happy coding!</p>
+  </body>
+</html>
