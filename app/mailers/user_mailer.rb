@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default :from => "noreply@salesforce.com"
+  default :from => "noreply@ask-api.heroku.com"
   
   def notification(user, reply)
     @user = user

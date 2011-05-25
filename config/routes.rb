@@ -7,8 +7,8 @@ MarSprintDemo::Application.routes.draw do
   # Oauth2 web server flow routes
   match 'sessions/callback' # sfdc uses this to for callback
   match 'sessions/oauth' # user hits this to start authentication
-  match 'old' => 'chatouts#old' # page without chatter feed.
-  
+  match 'qas/send'
+    
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

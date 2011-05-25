@@ -23,4 +23,11 @@ class QasController < ApplicationController
     render :action => 'index' # show the Q&A page again  
   end
   
+  
+  def send
+    user = User.new :email => 'logan@henriquez.net', :name => 'logan'
+    reply = 'That was the dumbest questions ever..'
+    UserMailer.notification(user, reply)
+  end  
+  
 end
