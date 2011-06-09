@@ -61,7 +61,7 @@ class Session
   
   
   # General purpose get with error handling and retry for expired token
-  def self.do_get(user, uri, file, filename)
+  def self.do_get(user, uri, file=nil, filename=nil)
     Rails.logger.info "Getting uri=#{uri}"
     base_uri "#{user.instance_url}/services/data/#{VERSION}"
     options = { :headers => { 'Authorization'   => "OAuth #{user.access_token}",

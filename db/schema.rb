@@ -10,12 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110313201149) do
+ActiveRecord::Schema.define(:version => 20110609035147) do
 
-  # Generally chatter is being used as the source for all feed related 
-  # items and users. This is only here so that the app can store the 
-  # access and refresh tokens for the "user" that represents this app
-  # in the salesforce org. 
+  create_table "questions", :force => true do |t|
+    t.integer  "feed_item_id"
+    t.integer  "comment_total"
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
     t.string "name"
     t.string "instance_url"
@@ -32,7 +37,5 @@ ActiveRecord::Schema.define(:version => 20110313201149) do
     t.string "email"
     t.string "profile_thumbnail_url"
   end
-
-
 
 end
