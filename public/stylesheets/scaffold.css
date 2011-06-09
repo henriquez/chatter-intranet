@@ -166,4 +166,22 @@ textarea#post-text-area, input#post-name-field {
 	border: 1px solid #00FFFF;
 }
 
-div.message, div.comment { margin-left:14px; }	
+div.message, div.comment { margin-left:14px; }
+
+div#what_is_this_app {
+	position: absolute;
+	left: 0px;
+	top:  295px;
+	background-color: #555;	
+	border-radius: 5px;
+     width: 80px; 
+	}	
+	
+div.side-box {
+	padding: 6px;
+}
+
+a.side-box {
+     color: #eee;
+     font-weight: 500;
+}		

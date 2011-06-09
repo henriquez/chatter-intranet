@@ -33,6 +33,9 @@ class QasController < ApplicationController
     user = User.new :email => 'logan@henriquez.net', :name => 'logan'
     reply = 'sent from dev environment'
     UserMailer.notification(user, reply).deliver
-  end  
+  end 
+  
+  def what_is_this_app
+    end 
   
 end
