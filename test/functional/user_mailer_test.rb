@@ -5,7 +5,7 @@ class UserMailerTest < ActionMailer::TestCase
   test "reply notification email" do
     user = User.new :email => 'logan@henriquez.net', :name => 'logan'
     reply = 'That was the dumbest questions ever..'
-    email = UserMailer.notification(user, reply)
+    email = UserMailer.notification(user, reply).deliver
     assert !ActionMailer::Base.deliveries.empty?
   end
 end

@@ -59,8 +59,9 @@ class Session
   end
   
   
+  
   # General purpose get with error handling and retry for expired token
-  def self.do_get(user, uri)
+  def self.do_get(user, uri, file, filename)
     Rails.logger.info "Getting uri=#{uri}"
     base_uri "#{user.instance_url}/services/data/#{VERSION}"
     options = { :headers => { 'Authorization'   => "OAuth #{user.access_token}",
@@ -84,6 +85,7 @@ class Session
     end
     Crack::JSON.parse(response.body)  
   end  
+  
   
   
   

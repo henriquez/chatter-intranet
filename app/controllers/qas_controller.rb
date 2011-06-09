@@ -15,10 +15,12 @@ class QasController < ApplicationController
   def create
     uri = "/chatter/feeds/record/#{Qa::GROUP_ID}/feed-items"
     body = "from #{params[:name]} : #{params["text"]}"
-    Session.do_post(User.qa_app_user, uri, body)
+    response = Session.do_post(User.qa_app_user, uri, body)
   rescue Session::PostTooLargeError => e
     flash.now[:error] = e.message
   ensure
+    # save the question so we can notify user when its answered.
+    Question.create! :item_id => response['id'], :email => params[:email], :name => params[:name]
     @chatouts = Qa.get_group_feed(User.qa_app_user) # get the feed
     render :action => 'index' # show the Q&A page again  
   end
@@ -26,9 +28,8 @@ class QasController < ApplicationController
   
   def sendmail
     user = User.new :email => 'logan@henriquez.net', :name => 'logan'
-    reply = 'That was the dumbest questions ever..'
-    UserMailer.notification(user, reply)
-    render :nothing => true
+    reply = 'sent from dev environment'
+    UserMailer.notification(user, reply).deliver
   end  
   
 end
