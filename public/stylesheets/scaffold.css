@@ -173,7 +173,8 @@ div#what_is_this_app {
 	left: 0px;
 	top:  295px;
 	background-color: #555;	
-	border-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
      width: 80px; 
 	}	
 	
@@ -183,5 +184,5 @@ div.side-box {
 
 a.side-box {
      color: #eee;
-     font-weight: 500;
+     font-weight: 600;
 }		

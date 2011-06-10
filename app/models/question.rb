@@ -6,8 +6,6 @@ class Question < ActiveRecord::Base
     resp.totals
   end
   
-  
-    Question.create :feed_item_id => feed_item_id, :comment_total => 0
 
   
 end

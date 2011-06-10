@@ -20,10 +20,10 @@ class QasController < ApplicationController
     flash.now[:error] = e.message
   ensure
     # save the question so we can notify user when its answered. Question.create :feed_item_id => feed_item_id, :comment_total => 0
-    Question.create! :feed_item_id => response['id'], 
-                     :comment_total => 0,
-                     :email => params[:email], 
-                     :name => params[:name]
+    # Question.create! :feed_item_id => response['id'], 
+    #                  :comment_total => 0,
+    #                  :email => params[:email], 
+    #                  :name => params[:name]
     @chatouts = Qa.get_group_feed(User.qa_app_user) # get the feed
     render :action => 'index' # show the Q&A page again  
   end
@@ -35,7 +35,5 @@ class QasController < ApplicationController
     UserMailer.notification(user, reply).deliver
   end 
   
-  def what_is_this_app
-    end 
   
 end
