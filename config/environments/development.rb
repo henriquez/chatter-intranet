@@ -33,5 +33,7 @@ MarSprintDemo::Application.configure do
   :password       => ENV['SENDGRID_PASSWORD'],
   :domain         => ENV['SENDGRID_DOMAIN']
 }
+
+  OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 end
 

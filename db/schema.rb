@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(:version => 20110609035147) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
+  
   create_table "users", :force => true do |t|
     t.string "name"
     t.string "instance_url"
@@ -37,5 +37,6 @@ ActiveRecord::Schema.define(:version => 20110609035147) do
     t.string "email"
     t.string "profile_thumbnail_url"
   end
+
 
 end

@@ -54,8 +54,8 @@ class Session
   # using identity service, return basic user info
   def self.get_user_identity(user)
     # SFDC issues a redirect, but httparty follows them by default
-    response = do_get(user, user.identity_url)
-    Crack::JSON.parse(response.body)  
+    do_get(user, user.identity_url)
+
   end
   
   

@@ -60,17 +60,19 @@ div.field, div.actions {
 	
 /* end scaffold code */
 
-
+/*
 div.container {
   margin: 0px, 30px, 30px 30px;	
-  width:800px;
+  width:800px; 
 }
+
+*/
 
 div#feed-items, div#publisher {
 
   border-radius:5px;
   background-color: white;
-  width:600px;
+  
   padding:12px;
 }
 
@@ -121,14 +123,7 @@ div.comment-row {
   padding:8px;
 }
 
-div#front-header {
-  background-color: SkyBlue;	
-  opacity: .8;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  width:600px;
-  padding:12px;
-}
+
 
 
 div.feed-item-row {
@@ -185,4 +180,43 @@ div.side-box {
 a.side-box {
      color: #eee;
      font-weight: 600;
-}		
+}
+
+
+/**********************************************/
+/***  Header **********************************/
+/**********************************************/
+
+span.navigation-text {
+	font-size: 22px;
+	font-weight: 600;
+	color: #555;		
+}
+
+
+span.navigation-text-selected {
+	font-size: 22px;
+	font-weight: 600;
+	color: #000;		
+}
+
+div#header-navigation {
+	background-color: #eee;	
+	border-radius: 4px;
+	padding: 6px;
+}
+	
+div#header {
+  background-color: SkyBlue;	
+  opacity: .7;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding:12px;
+  border: line;
+}
+
+h3#logo-text {
+	font-size: 26px;
+	font-weight: 700;
+	color: #111;
+}			

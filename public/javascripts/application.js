@@ -8,7 +8,11 @@ jQuery(function() {
 	$('textarea#post-text-area').TextAreaExpander(60, 1300);
 
 
+    
+
  	// Styling calls
+    $( "#tabs" ).tabs();  // inside the _header partial, top of page
+
 	//$('button').button();
 });
 

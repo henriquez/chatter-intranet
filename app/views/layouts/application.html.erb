@@ -17,7 +17,15 @@
 <body>
 
 <div class="container">
-  <%= yield %>
+	
+  <div class="span-24 last" id="header">
+	<%= render :partial => 'header' %>
+  </div>
+
+  <div class="span-24 last" id="body-area">
+  	<%= yield %>
+  </div>	
+  
 </div>
 
 </body>
