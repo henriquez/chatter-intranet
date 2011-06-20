@@ -1,0 +1,60 @@
+
+
+<div class="span-15 last">
+  <br />
+  <%= render :partial => 'form' %>
+</div>
+
+
+	
+<div class="span-15 last">
+		<br />
+	<% if flash[:notice] %>
+		<div class="error span-10 last">
+		  <%= flash[:notice] %>
+		</div>
+	<% end %>
+	
+	<% if @chatouts %>	
+		<div id="feed-items" class="span-15 last">
+
+		  <% @chatouts.each do |chatout| %>
+		    <div class="feed-item-row span-15 last">
+				<div class='user-thumb span-1'>
+				   <%= image_cheater(chatout['user']['lastName']) %>
+			    </div>
+			    <div class='message span-12 last'>
+			
+				  <span class='user-name bold'><%= sanitize chatout['user']['name']   %></span>&nbsp;
+				  <span class='message-body'><%= auto_link(sanitize chatout['body']['text'] ) %></span>
+				  <br /> <span class='created-date'><%= time_ago_in_words(chatout['createdDate']) %> ago</span>
+				</div>	 
+	
+			   <% if chatout['comments']['comments'].length > 0 %>
+
+			     <div class='comment-row span-12 clear last'>	
+					  <!-- comments -->
+					  <% chatout['comments']['comments'].each do |comment| %>
+						 <div class='user-thumb span-1'>
+						    <%= image_cheater(comment['user']['lastName']) %>
+						 </div>
+						<div class='comment span-10 last'>
+	
+							    <span class='user-name bold'><%= sanitize comment['user']['name']%></span>&nbsp;
+							<span class='message-body'><%= auto_link(sanitize comment['body']['text']) %></span>
+							   <br /> <span class='created-date'><%= time_ago_in_words(comment['createdDate']) %> ago</span>
+					   </div>
+				    <% end %>
+				</div>
+			    <% end %>
+		    </div>		
+		  <% end %>
+ 
+		</div>
+	<% end %>
+</div>
+
+<div id="what_is_this_app" class="span-4 last">
+	<div class="span-2 last side-box"><a href="/qas/what_is_this_app" class="side-box">What is this app?</a></div>
+	<div class="span-2 last side-box"><a href="https://github.com/henriquez/chatter-api-qa-app" class="side-box" >See the code</a></div>
+</div>	

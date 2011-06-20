@@ -104,7 +104,7 @@ span.message-body {
 }
 
 a.user-name { 
-		font-family: Arial, Helvetica;
+	font-family: Arial, Helvetica;
 	font-size: 14px;
 	height: 0px;
 	line-height: 15px;
@@ -182,6 +182,18 @@ a.side-box {
      font-weight: 600;
 }
 
+/**********************************************/
+/***  Left Sidebar ****************************/
+/**********************************************/
+
+div.left-sidebar {
+  border-radius:5px;
+  background-color: white;
+  padding:12px;
+  margin-bottom: 10px;
+}
+
+
 
 /**********************************************/
 /***  Header **********************************/
@@ -212,7 +224,7 @@ div#header {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   padding:12px;
-  border: line;
+  margin-bottom: 10px;
 }
 
 h3#logo-text {
