@@ -3,8 +3,11 @@ class QasController < ApplicationController
 
   # GET /qas (also mapped as domain root)
   # Display publisher and most recent questions from the group feed
-  def index 
-    @chatouts = Qa.get_group_feed(User.qa_app_user) # TODO need to set user from something.
+  def index
+    user = User.qa_app_user
+    @records = Qa.get_records(user) # populate the picker
+    # always show the first engine in the picker's feed - second element is record id
+    @chatouts = Qa.get_record_feed(user, @records[0]['Id'] ) 
   end
 
 

@@ -17,4 +17,10 @@ module QasHelper
       image_tag("/images/chadraa_thumb.jpeg", :size => "45x45", :class => 'profile-thumb' )  
     end
   end
+  
+  # formats into picker select format
+  def records_for_picker(user, records)
+    records.collect { |record| [record['Name'], record['Id'] ] } 
+  end
+  
 end

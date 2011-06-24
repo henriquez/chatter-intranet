@@ -1,11 +1,11 @@
 <div class="span-8 last left-sidebar" >
-  	<%= select "product", "product_id", Product.list %>
+  	<%= select "engine", "engine_id", records_for_picker(@records) %>
 	
 </div>
 
 <div class="span-8 last left-sidebar" >
-  	<h4 class="span-8 last">product description</h4>
-    <p> This is a really awesome electrical engine.  Really.  And its big too.</p>
+  	<h4 class="span-8 last">Product Description</h4>
+    <p><%= @records(@selected_record) %></p>
 	<%= image_tag "engine1.jpg" %>
 </div>
 
