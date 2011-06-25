@@ -7,8 +7,10 @@ jQuery(function() {
     // text areas should auto-expand
 	$('textarea#post-text-area').TextAreaExpander(60, 1300);
 
-
-    
+   // submit form to qas#show when engine picker is changed
+    $('select#engine_id').change( function() {
+      $('form#engine_picker').submit();
+    });
 
  	// Styling calls
     $( "#tabs" ).tabs();  // inside the _header partial, top of page

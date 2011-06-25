@@ -18,9 +18,14 @@ module QasHelper
     end
   end
   
+  
   # formats into picker select format
-  def records_for_picker(user, records)
-    records.collect { |record| [record['Name'], record['Id'] ] } 
+  def records_for_picker(records)
+    ret = []
+    records.each_with_index do |record, i| 
+      ret << [record['Name'], i ] 
+    end
+    ret
   end
   
 end

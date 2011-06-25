@@ -1,12 +1,16 @@
 <div class="span-8 last left-sidebar" >
-  	<%= select "engine", "engine_id", records_for_picker(@records) %>
-	
+	<%= form_tag(qa_path('0'), :method => "get", :id => 'engine_picker' ) do %>
+	  <%= label_tag(:engine, "Select Product") %>&nbsp;&nbsp;
+  	  <%= select "engine", "id", records_for_picker(@records),  :selected => @selected_record %>
+    <% end %>	
 </div>
 
 <div class="span-8 last left-sidebar" >
-  	<h4 class="span-8 last">Product Description</h4>
-    <p><%= @records(@selected_record) %></p>
-	<%= image_tag "engine1.jpg" %>
+  	<h4>Product Description</h4>
+    <div class="span-8 last image">
+	  <%= image_tag "engine#{@selected_record}.jpg", :size => "200x200" %>
+	</div>
+	<p><%= @records[@selected_record]['Description__c'] %></p>
 </div>
 
 <div class="span-8 last left-sidebar" >
