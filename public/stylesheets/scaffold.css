@@ -195,7 +195,14 @@ div.left-sidebar {
 
 div.image {
 	margin: 10px;
-}	
+}
+
+select.pretty {
+	font-size: 110%;
+	border: 0px black inset;
+	background: skyBlue;
+	color: Black;
+}		
 
 /**********************************************/
 /***  Header **********************************/

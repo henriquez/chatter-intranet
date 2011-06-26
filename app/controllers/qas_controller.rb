@@ -5,8 +5,7 @@ class QasController < ApplicationController
   def show
     user = User.qa_app_user
     @records = Qa.get_records(user) # populate the picker
-    @selected_record = params[:engine] ? params[:engine][:id].to_i : 0 
-    
+    @selected_record = params[:engine] ? params[:engine][:id].to_i : 0 # integer index to @records
     # always show the first engine in the picker's feed - second element is record id
     @chatouts = Qa.get_record_feed(user, @records[@selected_record]['Id'] ) 
   end
@@ -17,9 +16,10 @@ class QasController < ApplicationController
   # token on the form. That would let a clever user log into the org if they
   # knew how to use the token.
   def create
-    uri = "/chatter/feeds/record/#{Qa::GROUP_ID}/feed-items"
+    user = User.qa_app_user
+    uri = "/chatter/feeds/record/#{ params[:engine_id] }/feed-items"
     body = "from #{params[:name]} : #{params["text"]}"
-    response = Session.do_post(User.qa_app_user, uri, body)
+    response = Session.do_post(user, uri, body)
   rescue Session::PostTooLargeError => e
     flash.now[:error] = e.message
   ensure
@@ -28,8 +28,10 @@ class QasController < ApplicationController
     #                  :comment_total => 0,
     #                  :email => params[:email], 
     #                  :name => params[:name]
-    @chatouts = Qa.get_group_feed(User.qa_app_user) # get the feed
-    render :action => 'index' # show the Q&A page again  
+    @records = Qa.get_records(user) # populate the picker
+    @selected_record = params[:engine] ? params[:engine][:id].to_i : 0 # integer index
+    @chatouts = Qa.get_record_feed(user, @records[@selected_record]['Id'] )  # get the feed
+    render :action => 'show' # show the Q&A page again  
   end
   
   

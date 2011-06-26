@@ -1,7 +1,7 @@
 <div class="span-8 last left-sidebar" >
 	<%= form_tag(qa_path('0'), :method => "get", :id => 'engine_picker' ) do %>
 	  <%= label_tag(:engine, "Select Product") %>&nbsp;&nbsp;
-  	  <%= select "engine", "id", records_for_picker(@records),  :selected => @selected_record %>
+  	  <%= select "engine", "id", records_for_picker(@records), { :selected => @selected_record },   {:class => "pretty" } %>
     <% end %>	
 </div>
 
@@ -14,6 +14,15 @@
 </div>
 
 <div class="span-8 last left-sidebar" >
-  	<%= image_tag "specification.png" %>
+  	<h4>Specifications</h4>
+    <div  class="span-6 last">
+	  Amps:&nbsp;&nbsp;<%= @records[@selected_record]['Amps__c'].round %>
+	</div>
+	<div  class="span-6 last">
+	  Voltage:&nbsp;&nbsp;<%= @records[@selected_record]['Voltage__c'].round %>
+	</div>
+	<div  class="span-6 last">
+	  Hertz:&nbsp;&nbsp;<%= @records[@selected_record]['Hertz__c'].round %>
+	</div>
 	
 </div>
