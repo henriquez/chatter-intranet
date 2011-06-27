@@ -1,11 +1,16 @@
 <div>&nbsp;</div>
 <h3>How does this app work?</h3>
 
-<p>This application demonstrates how Chatter can be integrated into a traditional product information site to make it social, thereby better servicing customers.  Chatter adds a news feed to each product where the product's users can get updates and new buyers can ask questions.  Product buyers can interact with each other and salespeople.
-	
-The questions are posted to a record feed inside a Salesforce organization - one feed for each product.  This lets a sales team answer product-specific questions by adding comments to each feed item.  </p>
+<p>This application demonstrates how Chatter can be integrated into a traditional product information site to make it social.</p>
 
-<p>Here's a screenshot of what the application looks like inside the Chatter group</p>
+<p> Inside ACME Electric Engines' Salesforce organization there's a custom object record for each of product that the company sells.  The custom object record "Engines" contains a description of the product and its specifications along with a Chatter feed.</p>
+	
+<p>When an engine's specifications are updated on the custom object, tracked changes show up in the feed, notifying buyers that have designed the engine into their systems that there may be impacts. The product information site's product description and specifications are pulled from the Salesforce record using the REST API, so there's one source of truth and the product information site is always up to date.</p> 
+
+<p>New buyers considering the product can ask questions that are dropped into the Salesforce record feed.  This allows Salesforce users following the record to answer questions and see what additional features buyers might want.  Buyers can read and search the discussion around a specific product to benefit from previously answered questions and answers.  The record feed is extracted using the Chatter REST API.
+</p>
+
+<p>Here's what the application looks like inside the Chatter group</p>
 <div>
  <%= image_tag "/images/inside-the-org.png" %> 
 </div>
