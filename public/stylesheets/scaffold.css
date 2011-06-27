@@ -68,24 +68,29 @@ div.container {
 
 */
 
-div#feed-items, div#publisher {
-
+div#feed-items, div#publisher, div#search_box {
   border-radius:5px;
   background-color: white;
-  
   padding:12px;
 }
 
+div#search_box {
+	margin-top: 15px;
+}
+	
 div#feed-items {
   background-color: white;
   margin-bottom: 30px;
 }
 
-div#publisher {
+div#publisher, div#search_box {
   background-color: SkyBlue;	
   opacity: .8;
 }
 
+
+
+	
 div#post-ask-button {
   margin-top: 8px; /* to align with the textarea default margin */
 }	
@@ -149,15 +154,15 @@ span#service-status {
 	
 }	
 
-div#post-text-area, div#post-name-field {
+div#post-text-area, div#post-name-field, div#search_box {
 	margin: 10px 0 10px 0px;
 }
 
 	
-textarea#post-text-area, input#post-name-field {
+textarea#post-text-area, input#post-name-field, input#search_field {
 	font-size: 16px;
 	line-height: 22px;
-	width: 450px;
+
 	border: 1px solid #00FFFF;
 }
 

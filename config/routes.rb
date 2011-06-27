@@ -4,6 +4,7 @@ MarSprintDemo::Application.routes.draw do
   match 'sessions/callback' # sfdc uses this to for callback
   match 'sessions/oauth' # user hits this to start authentication
   match 'qas/send' => 'qas#send'
+  match 'qas/search' => 'qas#search', :as => :search
   match 'qas/what_is_this_app' => 'qas#what_is_this_app'
   
   resources :users

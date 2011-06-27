@@ -1,0 +1,15 @@
+<div id="search_box" class="span-15 last">
+	<div class="span-2" style="margin-top: 10px;">	
+	    <%= label_tag(:name, "Search") %>
+	  </div>
+	
+	<%= form_tag(search_path(:engine_id => @records[@selected_engine]['Id']) ) do %>
+	  	<div id="search" class="span-10">
+		    <%= text_field_tag(:search, "", :maxlength => 40, :size => 40, :id => "search_field") %>
+		  </div>
+	
+	      <div class="span-2 last" id="post-ask-button">
+	        <button name="search" type="submit" id="search-button" class="cssbutton medium blue" >&nbsp;Search&nbsp;</button>
+	      </div>
+	  <% end %>	
+</div>	

@@ -34,6 +34,17 @@ class Qa
   end
   
  
+  def self.search_feed(user, record_id, text)
+    input = get_record_feed(user, record_id)
+    # build array of feed items that match text
+    # TODO: add comment text matching.
+    output = []
+    input['items'].each do |item|
+      output << item if item['body']['text'] =~ /#{text}/ 
+    end
+    output
+  end
+  
   
   # urls don't include the domain so we have to add it
   def self.complete_url(url)
