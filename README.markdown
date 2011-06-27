@@ -1,8 +1,10 @@
-# Question and Answer Site
+# Chatter Product / Sales Site
 ## Chatter REST API Demo App
 
-This application demonstrates the 'un-authenticated user portal' use case. [Try it out here](http://ask-api.heroku.com).  This application takes questions from users on a 3rd party site and posts them to a group in chatter.  When it posts, the app posts on behalf of itself.  It also pulls out the group feed and displays it.  
+This application demonstrates how Chatter can be integrated into a traditional product information site to make it social, thereby better servicing customers.  Chatter adds a news feed to each product where the product's users can get updates and new buyers can ask questions.  Product buyers can interact with each other and salespeople.
+	
+The questions are posted to a record feed inside a Salesforce organization - one feed for each product.  This lets a sales team answer product-specific questions by adding comments to each feed item.   
 
-Another example of this use case would be chatter exported to an HR intranet site where users who are not necessarily on chatter may ask questions, and users inside HR who are members of a group can answer questions.  Replaces the typical list of email addresses and lets a team work a queue out of a group feed.
+[Try it out here](http://chatter-sales.heroku.com).  
 
  
