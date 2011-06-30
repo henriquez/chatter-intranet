@@ -1,6 +1,7 @@
 
 <% if @chatouts.empty? %>
-	$('div#feed-component').replaceWith("<%= raw escape_javascript("<h3 class='span-8'>Sorry, not finding anything like that</h3>") %>"));
+    var feed = "<div class='span-15 last' id='feed-component'><div id='feed-items' class='span-15 last'> <h3 class='span-14'>Sorry, not finding anything like that</h3> </div></div>";
+	$('div#feed-component').replaceWith(feed);
 <% else %>
     $('div#feed-component').replaceWith("<%= raw escape_javascript(render :partial => 'feed') %>");
 <% end %>
