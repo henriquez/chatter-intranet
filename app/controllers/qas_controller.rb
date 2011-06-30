@@ -1,7 +1,6 @@
 class QasController < ApplicationController
 
 
-
   def show
     user = User.qa_app_user
     @records = Qa.get_records(user) # populate the picker with all engines

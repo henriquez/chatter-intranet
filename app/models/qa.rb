@@ -39,7 +39,7 @@ class Qa
     # build array of feed items that match text
     # TODO: add comment text matching.
     output = []
-    input['items'].each do |item|
+    input.each do |item|
       output << item if item['body']['text'] =~ /#{text}/ 
     end
     output

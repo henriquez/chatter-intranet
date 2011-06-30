@@ -1,6 +1,6 @@
-<% if @chatouts.empty %>
-	<h3 class="span-8">Sorry, can't find anything like that</h3>
-<% else %>
-    <%= render :partial => 'feed' %>
 
-<% end %>	
+<% if @chatouts.empty? %>
+	$('div#feed-component').replaceWith("<%= raw escape_javascript("<h3 class='span-8'>Sorry, not finding anything like that</h3>") %>"));
+<% else %>
+    $('div#feed-component').replaceWith("<%= raw escape_javascript(render :partial => 'feed') %>");
+<% end %>

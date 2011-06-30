@@ -123,7 +123,7 @@ a.user-name {
 div.comment-row {
   margin-left: 55px; 
   border-radius:5px;
-  background-color: SkyBlue; 
+  background-color: #E7F5FB; 
   margin-top: 15px;
   padding:8px;
 }
@@ -159,10 +159,9 @@ div#post-text-area, div#post-name-field, div#search_box {
 }
 
 	
-textarea#post-text-area, input#post-name-field, input#search_field {
+textarea#post-text-area, input#post-name-field, input#search-field {
 	font-size: 16px;
 	line-height: 22px;
-
 	border: 1px solid #00FFFF;
 }
 
