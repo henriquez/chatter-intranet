@@ -14,22 +14,33 @@ jQuery(function() {
     });
 
 
-   // submit search form when search button clicked
+   // run search when search button clicked
     $('button#search-button').click( function() {
-	  var myParams = { search: $('input#search-field').val(), 
-	                   engine_id: $('input#search-field').attr('data-engine-id')
-	                 };	  
-	  $.getScript("/qas/search.js" + "?" + $.param(myParams) );
+	  runSearch();
     });
 
+
+   // run search when return key is hit and focus is on the search bar
+	$('#search-field').keydown(function(event) {
+	  if (event.keyCode == '13') {  // user hit the return key
+	     runSearch();
+	   }
+	});
 
  	// Styling calls
     $( "#tabs" ).tabs();  // inside the _header partial, top of page
 
-	//$('button').button();
+
 });
 
 
+// Ajax query that runs a search.
+function runSearch() {
+	var myParams = { search: $('input#search-field').val(), 
+	                 engine_id: $('input#search-field').attr('data-engine-id')
+	                };	  
+	$.getScript("/qas/search.js" + "?" + $.param(myParams) );
+}	
 
 
 // **************************************************
