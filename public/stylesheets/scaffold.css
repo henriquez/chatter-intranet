@@ -225,7 +225,7 @@ span.navigation-text-selected {
 	color: #000;		
 }
 
-div#header-navigation {
+div#header-navigation, div#header-sub-nav {
 	background-color: #eee;	
 	border-radius: 4px;
 	padding: 6px;

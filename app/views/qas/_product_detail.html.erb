@@ -1,28 +1,19 @@
 <div class="span-8 last left-sidebar" >
-	<%= form_tag(qa_path('0'), :method => "get", :id => 'engine_picker' ) do %>
-	  <%= label_tag(:engine, "Select Product") %>&nbsp;&nbsp;
-  	  <%= select "engine", "id", records_for_picker(@records), { :selected => @selected_engine },   {:class => "pretty" } %>
-    <% end %>	
-</div>
-
-<div class="span-8 last left-sidebar" >
-  	<h4>Product Description</h4>
-    <div class="span-8 last image">
-	  <%= image_tag "engine#{@selected_engine}.jpg", :size => "200x200" %>
-	</div>
-	<p><%= @records[@selected_engine]['Description__c'] %></p>
-</div>
-
-<div class="span-8 last left-sidebar" >
-  	<h4>Specifications</h4>
-    <div  class="span-6 last">
-	  Amps:&nbsp;&nbsp;<%= @records[@selected_engine]['Amps__c'].round %>
-	</div>
-	<div  class="span-6 last">
-	  Voltage:&nbsp;&nbsp;<%= @records[@selected_engine]['Voltage__c'].round %>
-	</div>
-	<div  class="span-6 last">
-	  Hertz:&nbsp;&nbsp;<%= @records[@selected_engine]['Hertz__c'].round %>
-	</div>
+  	<h3>Benefits Links</h3>
+    <h4  class="span-6 last">
+	  Health Care
+	</h4>
+	<h4  class="span-6 last">
+	  Day Care
+	</h4>
+	<h4  class="span-6 last">
+	  Commuter
+	</h4>
+	<h4  class="span-6 last">
+	  Training and Development
+	</h4>
+	<h4  class="span-6 last">
+	  Performance Reviews
+	</h4>
 	
 </div>
