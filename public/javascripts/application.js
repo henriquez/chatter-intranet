@@ -26,6 +26,25 @@ jQuery(function() {
 	     runSearch();
 	   }
 	});
+	
+	// User clicks login button and we drop a cookie identifying them
+    // as "Demo User".  Not a real login, just gives current user the
+    // ability to use the app as a real salesforce user even though they
+    // don't have a login to the org.  User now can use the app and api
+    // as "Demo User"
+    $('#login').click( function() {
+	  alert("Since you're not really a user in this Salesforce org, we're going to make you a user called Demo User.  If this was a real intranet app, you'd probably already be logged in via SSO.");
+	  $.cookie("logged_in", "true");
+	  $('#publisher').show();
+    });
+
+
+    // display publisher if user is logged in (cooke is present)
+    // and also show the user name instead of login button
+    if ($.cookie('logged_in') == "true") {
+	  $('#publisher').show();
+	  $('#login').replaceWith("<div class='span-3' style='font-weight: 600'>Demo User</div>");
+	}
 
  	// Styling calls
     $( "#tabs" ).tabs();  // inside the _header partial, top of page

@@ -23,6 +23,28 @@ class SessionTest < ActiveSupport::TestCase
     puts resp.comments
   end
   
+  
+  test "get my feed" do
+    user = User.new :access_token => ENV['access_token'],
+                    :instance_url => "https://ap1-blitz02.soma.salesforce.com"
+    uri = "/chatter/feeds/record/0F99000000000H4/feed-items"
+    resp = Session.do_get(user, uri)
+    puts resp.inspect
+    
+    
+  end
+  
+  
+  # get guest user's followers
+  test "guest users shouldnt get followers" do
+    user = User.new :access_token => ENV['access_token'],
+                    :instance_url => "https://ap1-blitz02.soma.salesforce.com"
+    uri = "/chatter/feeds/groups/me/feed-items"
+    resp = Session.do_get(user, uri)
+    puts resp.inspect
+  end
+  
+  
   # issues
   # 1. have to learn SOQL to get a collection - makes the easy things hard - every other api 
   #    its simply GET /resource name.  the /accounts URL which should return a collection doesn't.

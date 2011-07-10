@@ -1,4 +1,4 @@
-<div id="publisher" class="span-15 last">
+<div id="publisher" class="span-17 last">
 	<%= form_tag(qas_path(:engine_id => @records[@selected_engine]['Id']) ) do %>
 
 	  <div class="span-10 last">
@@ -9,23 +9,15 @@
 		  <% end %>
 	  </div>
 
-	  <div class="span-4 last">	
-	    <%= label_tag(:name, "Your Name") %>
-	  </div>
-	
-	  <div id="post-name-field" class="span-14 last">
-	    <%= text_field_tag(:name, "", :maxlength => 35, :size => 35, :id => "post-name-field") %>
-	  </div>
-
 
 	  
-	  <div class="span-15 last">	
-	    <%= label_tag(:name, "Comments, Questions, Suggestions") %>
+	  <div class="span-17 last">	
+	    <%= label_tag(:name, "Do you have any questions or comments for the Benefits team?") %>
 	  </div>
 	
 
 		
-	  <div id="post-text-area" class="span-15 last">
+	  <div id="post-text-area" class="span-17 last">
 		<div class="span-12">
 	      <%= text_area_tag 'text', nil,  :id => "post-text-area" %>
 	    </div>

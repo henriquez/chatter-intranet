@@ -43,6 +43,11 @@ class SessionsController < ApplicationController
     redirect_to qas_path # display publisher and feed
   end
   
+
+ 
+  
+  
+ 
   
   private
   

@@ -74,6 +74,10 @@ div#feed-items, div#publisher, div#search_box {
   padding:12px;
 }
 
+div#publisher {
+  display: none;
+}	
+
 div#search_box {
 	margin-top: 15px;
 }

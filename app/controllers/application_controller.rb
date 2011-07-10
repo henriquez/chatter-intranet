@@ -1,14 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  @@current_user = nil
-  
-  def current_user=(user)
-    @@current_user =  user
-  end
-  
-  def current_user
-    @@current_user ||= User.find(cookies[:user_id])
-  end
     
+    
+  def logged_in?
+    cookies[:logged_in] == "true"
+  end
+  
+     
 end

@@ -7,10 +7,12 @@ class Session
   # on use heroku config:add GITHUB_USERNAME=joesmith to set production values
   # see http://devcenter.heroku.com/articles/config-vars
   APP_DOMAIN = ENV['QA_DEMO_APP_DOMAIN']
+  
   CLIENT_ID = ENV['QA_DEMO_KEY']
   CLIENT_SECRET = ENV['QA_DEMO_SECRET']
   SFDC_DOMAIN = ENV['QA_DEMO_LOGIN_URL']
   VERSION = "v22.0" # Winter '11 release
+  
   
   CA_CERT_FILE = '/usr/lib/ssl/certs/ca-certificates.crt' # on heroku
   # note that dev ignores cert verification
