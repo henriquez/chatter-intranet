@@ -55,8 +55,7 @@ jQuery(function() {
 
 // Ajax query that runs a search.
 function runSearch() {
-	var myParams = { search: $('input#search-field').val(), 
-	                 engine_id: $('input#search-field').attr('data-engine-id')
+	var myParams = { search: $('input#search-field').val()
 	                };	  
 	$.getScript("/qas/search.js" + "?" + $.param(myParams) );
 }	

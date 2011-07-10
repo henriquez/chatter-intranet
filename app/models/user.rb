@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   
-  QA_APP_USER_NAME = 'qa-app@me.com'
+  QA_APP_USER_NAME = 'demouser@me.com'
   
   
   # will create a new user and save their access token and other info

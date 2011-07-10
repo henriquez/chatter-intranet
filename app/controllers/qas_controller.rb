@@ -1,12 +1,9 @@
 class QasController < ApplicationController
 
-
-  def show
+  # method to show the main (only) page
+  def index
     user = User.qa_app_user
-    @records = Qa.get_records(user) # populate the picker with all engines
-    @selected_engine = params[:engine] ? params[:engine][:id].to_i : 0 # integer index to @records
-    # always show the first engine in the picker's feed - second element is record id
-    @chatouts = Qa.get_record_feed(user, @records[@selected_engine]['Id'] ) 
+    @chatouts = Qa.get_record_feed(user, Qa::GROUP_ID ) 
   end
 
 
@@ -16,8 +13,8 @@ class QasController < ApplicationController
   # knew how to use the token.
   def create
     user = User.qa_app_user
-    uri = "/chatter/feeds/record/#{ params[:engine_id] }/feed-items"
-    body = "from #{params[:name]} : #{params["text"]}"
+    uri = "/chatter/feeds/record/#{ Qa::GROUP_ID }/feed-items"
+    body = params["text"]
     response = Session.do_post(user, uri, body)
   rescue Session::PostTooLargeError => e
     flash.now[:error] = e.message
@@ -27,17 +24,15 @@ class QasController < ApplicationController
     #                  :comment_total => 0,
     #                  :email => params[:email], 
     #                  :name => params[:name]
-    @records = Qa.get_records(user) # populate the picker
-    @selected_engine = params[:engine] ? params[:engine][:id].to_i : 0 # integer index
-    @chatouts = Qa.get_record_feed(user, @records[@selected_engine]['Id'] )  # get the feed
-    render :action => 'show' # show the Q&A page again  
+    @chatouts = Qa.get_record_feed(user, Qa::GROUP_ID )  # get the feed
+    render :action => 'index' # show the Q&A page again  
   end
   
   
   # Ajax call when user clicks search button
   def search
     user = User.qa_app_user
-    @chatouts = Qa.search_feed(user, params[:engine_id] , params[:search])
+    @chatouts = Qa.search_feed(user, Qa::GROUP_ID , params[:search])
   end
   
     
