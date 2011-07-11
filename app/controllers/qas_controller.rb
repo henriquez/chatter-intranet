@@ -35,7 +35,8 @@ class QasController < ApplicationController
     @chatouts = Qa.search_feed(user, Qa::GROUP_ID , params[:search])
   end
   
-    
+  
+  
   def sendmail
     user = User.new :email => 'logan@henriquez.net', :name => 'logan'
     reply = 'sent from dev environment'

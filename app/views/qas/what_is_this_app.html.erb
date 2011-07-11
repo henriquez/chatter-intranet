@@ -1,18 +1,22 @@
 <div>&nbsp;</div>
-<h3>How does this app work?</h3>
+<h3>Salesforce Chatter makes your intranet part of the Social Enterprise</h3>
 
-<p>This application demonstrates how Chatter can be integrated into a traditional product information site to make it social.</p>
+<div class="span-20">
+	<p class="explanation-text">This application demonstrates how Chatter can be integrated into an intranet site to make it social, thereby better serving employee's needs.</p>
 
-<p> Inside ACME Electric Engines' Salesforce organization there's a custom object record for each of product that the company sells.  The custom object record "Engines" contains a description of the product and its specifications along with a Chatter feed.</p>
+	<p class="explanation-text">Before the Chatter integration the HR benefits intranet site had some static information and a list of HR department employee email addresses for questions.  Employees often asked the same questions over and over.  Because the email exchanges were one to one this accumulated knowledge couldn't be searched or leveraged.  If the HR employee that was emailed was on vacation questions might go unanswered.</p>
+
+	<p class="explanation-text">These problems were solved by exporting Chatter to the HR Benefits intranet site. Inside ACME Electric Engines' Salesforce organization there's a group called "Employee Benefits" that's managed by the HR department. The Chatter feed for this group is mirrored on their intranet site.   Employees that have questions can first search the group to see if their question has already been answered, saving lots of time.  Other departments at Acme like Finance or R&D have similar group feeds on their intranet sites.  Any team that services internal clients or answers questions from other departments can leverage Chatter on their wiki, Sharepoint site, or other intranet platform.  </p>
+
+    <p class="explanation-text">Chatter social data is used to dynamically update the intranet site without IT intervention.  For example the list of team members is pulled from the HR benefits group members, and popular searches are pulled from popular group member hashtags. This data updates dynamically on the HR intranet site using the Chatter REST API.</p>	 
+
+	<p class="explanation-text">The group feed is extracted using the Chatter REST API, which also enables search.  See the <a href="http://developer.force.com/chatter-api">Chatter REST API resource page</a> for more information.
+	</p>
+
+	<p class="explanation-text">Here's what the application looks like inside the Chatter group.</p>
+</div>
 	
-<p>When an engine's specifications are updated on the custom object, tracked changes show up in the feed, notifying buyers that have designed the engine into their systems that there may be impacts. The product information site's product description and specifications are pulled from the Salesforce record using the REST API, so there's one source of truth and the product information site is always up to date.</p> 
-
-<p>New buyers considering the product can ask questions that are dropped into the Salesforce record feed.  This allows Salesforce users following the record to answer questions and see what additional features buyers might want.  Buyers can read and search the discussion around a specific product to benefit from previously answered questions and answers.  The record feed is extracted using the Chatter REST API.
-</p>
-
-<p>Here's what the application looks like inside the Chatter group</p>
 <div>
  <%= image_tag "/images/inside-the-org.png" %> 
 </div>
 <div>&nbsp;</div>
-<p>A user called "Question" has been created in the group that proxies external users.</p>

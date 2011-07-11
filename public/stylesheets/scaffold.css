@@ -68,17 +68,21 @@ div.container {
 
 */
 
-div#feed-items, div#publisher, div#search_box {
+div#feed-items, div#publisher, div#search_box, div#benefits-news {
   border-radius:5px;
   background-color: white;
   padding:12px;
+}
+
+.explanation-text {
+  font-size: 16px;
 }
 
 div#publisher {
   display: none;
 }	
 
-div#search_box {
+div#search_box, div#publisher {
 	margin-top: 15px;
 }
 	
@@ -86,6 +90,8 @@ div#feed-items {
   background-color: white;
   margin-bottom: 30px;
 }
+
+
 
 div#publisher, div#search_box {
   background-color: #E7F5FB;	
