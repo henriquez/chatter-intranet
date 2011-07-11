@@ -52,5 +52,9 @@ class Qa
   end
   
   
+  def self.get_members(user)
+    resp = Session.do_get(user, "/chatter/groups/#{GROUP_ID}/members")
+    resp['members'].to_json # array - use 'user' to access name and url as attr.
+  end  
     
 end

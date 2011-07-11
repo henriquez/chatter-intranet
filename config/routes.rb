@@ -3,7 +3,7 @@ MarSprintDemo::Application.routes.draw do
   # Oauth2 web server flow routes
   match 'sessions/callback' # sfdc uses this to for callback
   match 'sessions/oauth' # user hits this to start authentication
-
+  match 'qas/team'  # get group members ajax call
   match 'qas/what_is_this_app' => 'qas#what_is_this_app'
   
   resources :users

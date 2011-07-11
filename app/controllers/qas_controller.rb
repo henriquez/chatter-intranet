@@ -36,6 +36,12 @@ class QasController < ApplicationController
   end
   
   
+  # Ajax call when user clicks team member list
+  def team
+    user = User.qa_app_user
+    render :text => Qa.get_members(user)
+  end  
+  
   
   def sendmail
     user = User.new :email => 'logan@henriquez.net', :name => 'logan'

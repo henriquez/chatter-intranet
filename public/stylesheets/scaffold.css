@@ -13,9 +13,9 @@ pre {
 }
 
 
-a:link {text-decoration:none; color: DarkBlue;} 
-a:visited {text-decoration:none; color:DarkBlue;}
-a:hover {text-decoration:none; color:#08c;}
+a:link {text-decoration:none; color:#08c; } 
+a:visited {text-decoration:none; color:#08c; }
+a:hover {text-decoration:none; color:DarkBlue; }
 
 
 div.field, div.actions {
