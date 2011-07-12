@@ -53,9 +53,8 @@ jQuery(function() {
     $('#hr-group-members').click( function() {
 	  // get the list of team members
 	  $.get("qas/team", function(data) { // put request thru server so we don't expose token
-		// display modal box with member list
-		var members = jQuery.parseJSON(data);
-		showMembers(members);
+		// display modal box with member list	
+		showMembers(data);
 	  });	
     });
     
@@ -82,9 +81,16 @@ function runSearch() {
 
 // display modal box with list of group member names linked to their
 // user profiles
-function showMembers(members) {
+function showMembers(data) {
 	// use handlebars - put a template into the source, then render it with teh 
 	// JSON as intput.
+    var names = jQuery.parseJSON(data); // names is array of name strings
+	var context = { members: names };
+	var source  = $("#dialog-template").html();
+	var template = Handlebars.compile(source);
+	var html = template(context);
+	$('#group-members-dialog').html(html);
+	$('#group-members-dialog').dialog();
 }
 
 

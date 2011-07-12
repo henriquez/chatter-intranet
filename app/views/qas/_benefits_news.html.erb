@@ -7,3 +7,16 @@
 	<p class="explanation-text">On July 1, 2011, the following changes will be made to salesforce.com's California Voluntary Disability Insurance (VDI) plan.  For more information <a id="hr-news" href="#">see here.</a>
 	</p>
 </div>
+
+<div id="group-members-dialog" >
+  
+</div>
+
+<script id="dialog-template" type="text/x-handlebars-template">
+  <div> HR Benefits Team Members</div><div>&nbsp;</div>
+	<ul class="people_list">
+    {{#each members}}
+    <li><a>{{this}}</a></li>
+    {{/each}}
+  </ul>
+</script>

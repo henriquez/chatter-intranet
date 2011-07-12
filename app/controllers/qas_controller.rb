@@ -39,7 +39,7 @@ class QasController < ApplicationController
   # Ajax call when user clicks team member list
   def team
     user = User.qa_app_user
-    render :text => Qa.get_members(user)
+    render :text => ['Patrick Dumfy', 'Madison Rigby'].to_json
   end  
   
   

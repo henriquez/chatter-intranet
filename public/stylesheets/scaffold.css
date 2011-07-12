@@ -78,6 +78,10 @@ div#feed-items, div#publisher, div#search_box, div#benefits-news {
   font-size: 16px;
 }
 
+#dialog-template, #group-members-dialog {
+	display: none;
+}	
+
 div#publisher {
   display: none;
 }	
