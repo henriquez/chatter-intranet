@@ -23,7 +23,7 @@ jQuery(function() {
    // run search when return key is hit and focus is on the search bar
 	$('#search-field').keydown(function(event) {
 	  if (event.keyCode == '13') {  // user hit the return key
-	     runSearch();
+	     runSearch( $('input#search-field').val() );
 	   }
 	});
 	
@@ -58,6 +58,14 @@ jQuery(function() {
 	  });	
     });
     
+
+    //hashtab based searches
+	$('.hashsearch').click(function(event) {
+
+	     runSearch(this.id);
+
+	});
+
  	// Styling calls
     $( "#tabs" ).tabs();  // inside the _header partial, top of page
 
@@ -72,9 +80,8 @@ jQuery(function() {
 // **************************************************
 
 // Ajax query that runs a search.
-function runSearch() {
-	var myParams = { search: $('input#search-field').val()
-	                };	  
+function runSearch(text) {
+	var myParams = { search: text };	  
 	$.getScript("/qas/search.js" + "?" + $.param(myParams) );
 }	
 

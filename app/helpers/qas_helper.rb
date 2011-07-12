@@ -9,6 +9,8 @@ module QasHelper
       image_tag("/images/mrigby_thumb.png", :size => "45x45", :class => 'profile-thumb' )
     elsif user_lastname == 'Dumfy'
       image_tag("/images/patrick_thumb.png", :size => "45x45", :class => 'profile-thumb' )
+    elsif user_lastname == 'Smith'
+      image_tag("/images/john_smith_thumb.png", :size => "45x45", :class => 'profile-thumb' )
 
     end
   end
