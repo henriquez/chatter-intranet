@@ -38,9 +38,12 @@ class Qa
     input = get_record_feed(user, record_id)
     # build array of feed items that match text
     # TODO: add comment text matching.
+    
     output = []
     input.each do |item|
-      output << item if item['body']['text'] =~ /#{text}/ 
+      Rails.logger.info item['body']['text']
+      Rails.logger.info "text=#{text}"
+      output << item if item['body']['text'] =~ /#{text}/i 
     end
     output
   end

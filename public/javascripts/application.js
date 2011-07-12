@@ -16,14 +16,16 @@ jQuery(function() {
 
    // run search when search button clicked
     $('button#search-button').click( function() {
-	  runSearch();
+	  var text = $('input#search-field').val();
+	  runSearch( text );
     });
 
 
    // run search when return key is hit and focus is on the search bar
 	$('#search-field').keydown(function(event) {
 	  if (event.keyCode == '13') {  // user hit the return key
-	     runSearch( $('input#search-field').val() );
+		 var text = $('input#search-field').val();
+	     runSearch( text );
 	   }
 	});
 	
