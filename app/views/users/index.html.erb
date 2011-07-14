@@ -1,18 +1,20 @@
 <div id="feed" class="span-18 last">
 	<br /><br />
-	<h3><%= @profile['name'] %></h3>
-	<div class="span-10" style="margin-bottom: 20px;">
-		<%= image_tag @profile['photo']["largePhotoUrl"] %>
+	<div class="span-2" style="margin-bottom: 20px;">
+		<%= image_cheater(@profile['lastName']) %>
+	</div>
+	<div class="span-6" style="margin-bottom: 20px;">
+	  <h3><%= @profile['name'] %></h3>
 	</div>
 	
-	<h4 class="span-10">
+	<h3 class="span-10 last">
 	  Telephone: <%=	@profile['phoneNumbers'][0]['number'] %>
-	</h4>	
-	<div class="span-18">
+	</h3>	
+	<div class="span-18 last">
 	  <h4>Current Status</h4>
 	  <p class="explanation-text"><%= @profile['currentStatus']['body']['text'] %></p>
 	</div>
-	<div class="span-18">
+	<div class="span-18 last">
 	  <h4> About Me</h4>
 	  <p class="explanation-text"><%=	@profile['aboutMe'] %></p>
     </div>
