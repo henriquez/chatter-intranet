@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
     self.save!
   end
   
-      
+          
       
   
 end

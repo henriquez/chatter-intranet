@@ -93,8 +93,8 @@ function runSearch(text) {
 function showMembers(data) {
 	// use handlebars - put a template into the source, then render it with teh 
 	// JSON as intput.
-    var names = jQuery.parseJSON(data); // names is array of name strings
-	var context = { members: names };
+	
+	var context = jQuery.parseJSON(data); // see QasController#team
 	var source  = $("#dialog-template").html();
 	var template = Handlebars.compile(source);
 	var html = template(context);

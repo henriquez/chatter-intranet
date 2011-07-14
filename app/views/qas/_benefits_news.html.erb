@@ -15,8 +15,8 @@
 <script id="dialog-template" type="text/x-handlebars-template">
   <div> HR Benefits Team Members</div><div>&nbsp;</div>
 	<ul class="people_list">
-    {{#each members}}
-    <li><a>{{this}}</a></li>
+    {{#each users}}
+    <li><a href="{{link}}">{{name}}</a></li>
     {{/each}}
   </ul>
 </script>

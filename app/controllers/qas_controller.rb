@@ -39,10 +39,16 @@ class QasController < ApplicationController
   # Ajax call when user clicks team member list
   def team
     user = User.qa_app_user
-    render :text => ['Patrick Dumfy', 'Madison Rigby'].to_json
+    render :text => %({ "users": [
+                                { "name" : "Patrick Dumfy", "link": "http://#{Session::APP_DOMAIN}/users?id=005A0000001rQP6" },
+                                { "name" : "Madison Rigby", "link": "http://#{Session::APP_DOMAIN}/users?id=005A0000001rQOr" }
+                              ]
+                      })        
   end  
   
+
   
+    
   def sendmail
     user = User.new :email => 'logan@henriquez.net', :name => 'logan'
     reply = 'sent from dev environment'

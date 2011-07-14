@@ -63,7 +63,7 @@ class Session
   
   
   # General purpose get with error handling and retry for expired token
-  def self.do_get(user, uri, file=nil, filename=nil)
+  def self.do_get(user, uri, noparse=nil, file=nil, filename=nil)
     Rails.logger.info "Getting uri=#{uri}"
     base_uri "#{user.instance_url}/services/data/#{VERSION}"
     options = { :headers => { 'Authorization'   => "OAuth #{user.access_token}",
@@ -85,7 +85,11 @@ class Session
     elsif response.header.code != '200' # failed for some other reason
       raise StandardError, "unknown failure getting uri with #{response.header.inspect}"
     end
-    Crack::JSON.parse(response.body)  
+    if noparse
+      return response.body
+    else 
+      return Crack::JSON.parse(response.body) 
+    end
   end  
   
   
@@ -96,7 +100,7 @@ class Session
   def self.do_post(user, uri, text)
     raise PostTooLargeError, "Post may not exceed 1000 characters" if text.length > 1000
     Rails.logger.info "Posting uri=#{uri}"
-    base_uri "#{user.instance_url}/services/data/#{VERSION}"
+    base_uri chatter_base_uri(user)
     options = { :headers => { 'Authorization'   => "OAuth #{user.access_token}"
                              }
                }
@@ -120,4 +124,8 @@ class Session
     Crack::JSON.parse(response.body)               
   end
   
+  
+  def self.chatter_base_uri(user)
+    "#{user.instance_url}/services/data/#{VERSION}"
+  end
 end
