@@ -40,6 +40,7 @@ jQuery(function() {
 	  $.cookie("logged_in", "true");
 	  $('#publisher').show();
 	  $( "#login" ).callout("hide");
+	  $('#login').replaceWith("<div class='span-3' style='font-weight: 600'>Demo User</div>");
 	  showCallouts();
     });
 
@@ -129,12 +130,12 @@ function showCallouts() {
       $(this).callout("hide");
     });
 
-    $("#search").callout({
+    $("#search-button").callout({
 	    position: "right", 
 	    msg:"Search to see if your question was already answered."
 	});
 	
-	$("#search").click(function() {
+	$("#search-button").click(function() {
       $(this).callout("hide");
     });
 
