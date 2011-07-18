@@ -76,7 +76,7 @@ jQuery(function() {
 
     $( "#login" ).callout({
 	    position: "bottom", 
-	    msg:"Login to start this demo."
+	    msg:"This demo app illustrates how Chatter can be integrated into an intranet site. Login to start."
 	});
 
 });
