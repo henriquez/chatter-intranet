@@ -39,6 +39,8 @@ jQuery(function() {
 	  alert("Since you're not really a user in this Salesforce org, we're going to make you a user called Demo User.  If this was a real intranet app, you'd probably already be logged in via SSO.");
 	  $.cookie("logged_in", "true");
 	  $('#publisher').show();
+	  $( "#login" ).callout("hide");
+	  showCallouts();
     });
 
 
@@ -71,7 +73,44 @@ jQuery(function() {
  	// Styling calls
     $( "#tabs" ).tabs();  // inside the _header partial, top of page
 
-    // Callouts
+    $( "#login" ).callout({
+	    position: "bottom", 
+	    msg:"Login to start this demo."
+	});
+
+});
+
+
+
+
+// **************************************************
+// lower level functions that don't run unless called
+// **************************************************
+
+// Ajax query that runs a search.
+function runSearch(text) {
+	var myParams = { search: text };	  
+	$.getScript("/qas/search.js" + "?" + $.param(myParams) );
+}	
+
+
+// display modal box with list of group member names linked to their
+// user profiles
+function showMembers(data) {
+	// use handlebars - put a template into the source, then render it with teh 
+	// JSON as intput.
+	
+	var context = jQuery.parseJSON(data); // see QasController#team
+	var source  = $("#dialog-template").html();
+	var template = Handlebars.compile(source);
+	var html = template(context);
+	$('#group-members-dialog').html(html);
+	$('#group-members-dialog').dialog();
+}
+
+
+function showCallouts() {
+	
 	$("#hr-group-members").callout({
 	    position: "right", 
 	    msg:"The Chatter api makes social data like users, followers, group members easily available. Click the link to see how it works."
@@ -107,36 +146,4 @@ jQuery(function() {
 	$("#faq").click(function() {
       $(this).callout("hide");
     });
-
-});
-
-
-
-
-// **************************************************
-// lower level functions that don't run unless called
-// **************************************************
-
-// Ajax query that runs a search.
-function runSearch(text) {
-	var myParams = { search: text };	  
-	$.getScript("/qas/search.js" + "?" + $.param(myParams) );
-}	
-
-
-// display modal box with list of group member names linked to their
-// user profiles
-function showMembers(data) {
-	// use handlebars - put a template into the source, then render it with teh 
-	// JSON as intput.
-	
-	var context = jQuery.parseJSON(data); // see QasController#team
-	var source  = $("#dialog-template").html();
-	var template = Handlebars.compile(source);
-	var html = template(context);
-	$('#group-members-dialog').html(html);
-	$('#group-members-dialog').dialog();
 }
-
-
-
