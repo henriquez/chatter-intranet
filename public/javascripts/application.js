@@ -71,6 +71,42 @@ jQuery(function() {
  	// Styling calls
     $( "#tabs" ).tabs();  // inside the _header partial, top of page
 
+    // Callouts
+	$("#hr-group-members").callout({
+	    position: "right", 
+	    msg:"The Chatter api makes social data like users, followers, group members easily available. Click the link to see how it works."
+	});
+	
+	$("#hr-group-members").click(function() {
+      $(this).callout("hide");
+    });
+
+    $("#post-button").callout({
+	    position: "right", 
+	    msg:"Post into a group feed to ask questions or make requests."
+	});
+	
+	$("#post-button").click(function() {
+      $(this).callout("hide");
+    });
+
+    $("#search").callout({
+	    position: "right", 
+	    msg:"Search to see if your question was already answered."
+	});
+	
+	$("#search").click(function() {
+      $(this).callout("hide");
+    });
+
+    $("#faq").callout({
+	    position: "bottom", 
+	    msg:"Tie together intranet pages with community intelligence inside Chatter."
+	});
+	
+	$("#faq").click(function() {
+      $(this).callout("hide");
+    });
 
 });
 
