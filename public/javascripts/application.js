@@ -74,7 +74,7 @@ jQuery(function() {
  	// Styling calls
     $( "#tabs" ).tabs();  // inside the _header partial, top of page
 
-    $( "#login" ).callout({
+    $( "#products-header" ).callout({
 	    position: "bottom", 
 	    msg:"This demo app illustrates how Chatter can be integrated into an intranet site. Login to start."
 	});
