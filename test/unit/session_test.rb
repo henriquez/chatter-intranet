@@ -26,8 +26,8 @@ class SessionTest < ActiveSupport::TestCase
   
   test "get my feed" do
     user = User.new :access_token => ENV['access_token'],
-                    :instance_url => "https://ap1-blitz02.soma.salesforce.com"
-    uri = "/chatter/feeds/record/0F99000000000H4/feed-items"
+                    :instance_url => "https://na1-blitz02.soma.salesforce.com"
+    uri = "/chatter/feeds/news/me/feed-items"
     resp = Session.do_get(user, uri)
     puts resp.inspect
     
