@@ -11,7 +11,7 @@ class Session
   CLIENT_ID = ENV['QA_DEMO_KEY']
   CLIENT_SECRET = ENV['QA_DEMO_SECRET']
   SFDC_DOMAIN = ENV['QA_DEMO_LOGIN_URL']
-  VERSION = "v23.0" # Winter '11 release
+  VERSION = "v23.0" # Winter '11 release yo
   
   
   CA_CERT_FILE = '/usr/lib/ssl/certs/ca-certificates.crt' # on heroku
