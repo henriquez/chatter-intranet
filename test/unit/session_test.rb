@@ -26,11 +26,22 @@ class SessionTest < ActiveSupport::TestCase
   
   test "get my feed" do
     user = User.new :access_token => ENV['access_token'],
-                    :instance_url => "https://na1-blitz02.soma.salesforce.com"
+                    :instance_url => "https://vmf02.t.salesforce.com"
     uri = "/chatter/feeds/news/me/feed-items"
     resp = Session.do_get(user, uri)
     puts resp.inspect
   end
+  
+  
+  test "download a file" do
+    user = User.new :access_token => ENV['access_token'],
+                    :instance_url => "https://vmf02.t.salesforce.com"
+    uri = "/chatter/files/069x000000000AuAAI/content?versionNumber=1"                
+    # uri = "/services/data/v23.0/chatter/files/069x000000000AuAAI/content?versionNumber=1&access_token=00Dx00000000MXn!AREAQMlC3zMHPDclj_vlbqCrUC71pzrXzPkG3Thzl7sEDiv1d3w8.YJufEDmd3spFPWWB0ML1Ofe6l3tTciE3T0aPMdQme3p"
+    resp = Session.do_download(user, uri)
+    puts resp
+  end
+  
   
   
   # get guest user's followers

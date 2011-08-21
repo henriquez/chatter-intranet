@@ -1,7 +1,16 @@
 require 'httparty'
+require 'net/http'
+require "uri"
+
+class SimpleParser < HTTParty::Parser
+  def parse
+    
+  end
+end
 
 class Session 
   include HTTParty
+  
   
   # .bashrc must have these set in the development environment
   # on use heroku config:add GITHUB_USERNAME=joesmith to set production values
@@ -24,6 +33,7 @@ class Session
   AUTHORIZE_PATH = '/services/oauth2/authorize'
   
   class PostTooLargeError < StandardError; end
+  
   
   
   # Given a refresh token, update that user with a fresh
@@ -92,6 +102,18 @@ class Session
     end
   end  
   
+  
+  def self.do_download(user, uri)
+    url = "#{user.instance_url}/services/data/#{VERSION}" + uri
+    headers = { 'Authorization' => "OAuth #{user.access_token}" }
+    uri = URI.parse(url)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    req = Net::HTTP::Get.new(uri.request_uri) 
+    response =  http.request(req)  
+   
+  end
   
   
   
