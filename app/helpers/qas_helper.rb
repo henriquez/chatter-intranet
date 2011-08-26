@@ -4,7 +4,7 @@ module QasHelper
   # for static assets.
   def image_cheater(user_lastname)
     if user_lastname == 'User'
-      image_tag("/images/demouser_thumb.jpg", :size => "45x45", :class => 'profile-thumb' )
+      image_tag("/images/pam.jpg", :size => "45x45", :class => 'profile-thumb' )
     elsif user_lastname == 'Rigby'
       image_tag("/images/mrigby_thumb.png", :size => "45x45", :class => 'profile-thumb' )
     elsif user_lastname == 'Dumfy'
