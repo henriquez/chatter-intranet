@@ -16,8 +16,8 @@
 			    </div>
 			    <div class='message span-12 last'>
 			
-				  <span class='user-name bold'><%= sanitize chatout['actor']['name']   %></span>&nbsp;
-				  <span class='message-body'><%= auto_link(sanitize chatout['body']['text'] ) %></span>
+				  <span class='user-name bold'><%= sanitize chatout['actor']['name']  %></span>&nbsp;
+				  <span class='message-body'><%= sanitize message_segments(chatout) %></span>
 				  <br /> <span class='created-date'><%= time_ago_in_words(chatout['createdDate']) %> ago</span>
 				</div>	 
 	
