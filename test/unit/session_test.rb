@@ -30,8 +30,6 @@ class SessionTest < ActiveSupport::TestCase
     uri = "/chatter/feeds/news/me/feed-items"
     resp = Session.do_get(user, uri)
     puts resp.inspect
-    
-    
   end
   
   
@@ -44,6 +42,13 @@ class SessionTest < ActiveSupport::TestCase
     puts resp.inspect
   end
   
+  
+   test "get dashboard component" do
+     user = User.new :access_token => '00DA0000000CbV1!AREAQPpb7tSU_KOKKbd7Yd5n_dlW9c6cZMaeOkwI2s0BSlQpX7HCXpSXIGeJyInVJ2iNerZBOpAW.NasIJsTPFXDHav9fZPK',
+                     :instance_url => "https://na7.salesforce.com"
+
+   end
+   
   
   # issues
   # 1. have to learn SOQL to get a collection - makes the easy things hard - every other api 
