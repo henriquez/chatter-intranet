@@ -3,7 +3,7 @@
 # Salesforce.  
 class Qa 
   
-  GROUP_ID = '0F9A00000008WCl'
+  GROUP_ID = ENV['PR_DEMO_GROUP_ID']
           
   # Poll the org and write any new feed-items with the #chatout
   # tag to the db

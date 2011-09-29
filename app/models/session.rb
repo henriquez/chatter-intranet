@@ -15,12 +15,13 @@ class Session
   # .bashrc must have these set in the development environment
   # on use heroku config:add GITHUB_USERNAME=joesmith to set production values
   # see http://devcenter.heroku.com/articles/config-vars
-  APP_DOMAIN = ENV['QA_DEMO_APP_DOMAIN']
+  #### DEPLOY: CHANGE PR TO QA when pushing to production. #####
+  APP_DOMAIN = ENV['PR_DEMO_APP_DOMAIN']
   
-  CLIENT_ID = ENV['QA_DEMO_KEY']
-  CLIENT_SECRET = ENV['QA_DEMO_SECRET']
-  SFDC_DOMAIN = ENV['QA_DEMO_LOGIN_URL']
-  VERSION = "v23.0" # Winter '11 release yo
+  CLIENT_ID = ENV['PR_DEMO_KEY']
+  CLIENT_SECRET = ENV['PR_DEMO_SECRET']
+  SFDC_DOMAIN = ENV['PR_DEMO_LOGIN_URL']
+  VERSION = "v23.0" # Winter '12 release yo
   
   
   CA_CERT_FILE = '/usr/lib/ssl/certs/ca-certificates.crt' # on heroku
@@ -74,8 +75,8 @@ class Session
   
   # General purpose get with error handling and retry for expired token
   def self.do_get(user, uri, noparse=nil, file=nil, filename=nil)
-    Rails.logger.info "Getting uri=#{uri}"
     base_uri "#{user.instance_url}/services/data/#{VERSION}"
+    Rails.logger.info "Getting uri=#{base_uri}#{uri}"
     options = { :headers => { 'Authorization'   => "OAuth #{user.access_token}",
                                'Content-Type'    => "application/json",
                                'X-PrettyPrint'   => "1"
