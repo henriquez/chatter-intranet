@@ -3,7 +3,8 @@ class QasController < ApplicationController
   # method to show the main (only) page
   def index
     user = User.qa_app_user
-    @chatouts = Qa.get_record_feed(user, Qa::GROUP_ID ) 
+    @chatouts = Qa.get_record_feed(user, Qa::GROUP_ID )
+    # DEPLOY remove below 
     Rails.logger.info @chatouts.inspect
   end
 
@@ -47,7 +48,7 @@ class QasController < ApplicationController
     #                   })    
     #### DEPLOY: uncomment above and remove below
         render :text => %({ "users": [
-                                 { "name" : "Patrick Dumfy", "link": "http://#{Session::APP_DOMAIN}/users?id=005x0000000K9Qa", "photo" : "/images/patrick_thumb.png" }
+                                 { "name" : "Patrick Dumfy", "link": "http://#{Session::APP_DOMAIN}/users/005x0000000K9Qa", "photo" : "/images/patrick_thumb.png" }
                                 
                                ]
                        })     

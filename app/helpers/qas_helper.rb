@@ -25,4 +25,27 @@ module QasHelper
     ret
   end
   
+  
+  # helper that takes a feedItem hash and converts it to HTML, including
+  # properly structuring any included message segments like @mentions.
+  def message_segments(feeditem)
+    # an array of hashes - each hash a segment
+    html = ''
+    feeditem['body']['messageSegments'].each do |segment|
+      html << case segment['type']
+               when 'Text'
+                 segment['text']
+               when 'Link'
+                 %Q(<a href="#{segment['url']}">#{segment['text']}</a>)
+               when 'Mention'
+                 %Q(<a href="/users/#{segment['user']['id']}">#{segment['text']}</a>)
+               when 'Hashtag' # NEXT: run actual search - redo the search
+                 # method to use the API, return feed items and display them
+                 # this link should run the search method in qascontroller
+                 %Q(<a href="#{segment['url']}">#{segment['text']}</a>)
+               end                  
+    end 
+    html 
+  end
+  
 end
