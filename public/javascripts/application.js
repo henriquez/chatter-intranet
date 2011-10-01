@@ -21,6 +21,13 @@ jQuery(function() {
     });
 
 
+   // run search when hastag topic clicked
+   $('.hashtag').click( function(event) {
+	
+	  runSearch( $(this).html() );
+    });
+
+
    // run search when return key is hit and focus is on the search bar
 	$('#search-field').keydown(function(event) {
 	  if (event.keyCode == '13') {  // user hit the return key
@@ -66,10 +73,9 @@ jQuery(function() {
 
     //hashtab based searches
 	$('.hashsearch').click(function(event) {
-
 	     runSearch(this.id);
-
 	});
+
 
  	// Styling calls
     $( "#tabs" ).tabs();  // inside the _header partial, top of page
