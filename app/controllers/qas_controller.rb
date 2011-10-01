@@ -4,8 +4,6 @@ class QasController < ApplicationController
   def index
     user = User.qa_app_user
     @chatouts = Qa.get_record_feed(user, Qa::GROUP_ID )
-    # DEPLOY remove below 
-    Rails.logger.info @chatouts.inspect
   end
 
 
@@ -34,7 +32,8 @@ class QasController < ApplicationController
   # Ajax call when user clicks search button
   def search
     user = User.qa_app_user
-    @chatouts = Qa.search_feed(user, Qa::GROUP_ID , params[:search])
+    text = URI.decode(params[:search])
+    @chatouts = Qa.search_feed(user, Qa::GROUP_ID , text)
   end
   
   

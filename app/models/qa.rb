@@ -1,6 +1,8 @@
 # not an ActiveRecord class because all the feed related data is stored
 # in Salesforce.  This class just does the API calls to interact with 
-# Salesforce.  
+# Salesforce. 
+require 'uri'
+ 
 class Qa 
   
   GROUP_ID = ENV['PR_DEMO_GROUP_ID']
@@ -34,16 +36,15 @@ class Qa
   end
   
  
-  def self.search_feed(user, record_id, text)
-    input = get_record_feed(user, record_id)
-    # build array of feed items that match text
-    # TODO: add comment text matching.
-    
+  # search for feed items that match text and are parented by record_id, 
+  # e.g. a specific group or record feed.
+  def self.search_feed(user, record_id, text, page_size=100)
+    escaped_text = URI.escape(text, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+    items = Session.do_get(user, "/chatter/feed-items?q=#{escaped_text}&pageSize=#{page_size}")
+    # filter out items that are not part of the searched group
     output = []
-    input.each do |item|
-      Rails.logger.info item['body']['text']
-      Rails.logger.info "text=#{text}"
-      output << item if item['body']['text'] =~ /#{text}/i 
+    items['items'].each do |item|
+      output << item if item['parent']['id'] == record_id
     end
     output
   end

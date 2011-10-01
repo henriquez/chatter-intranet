@@ -1,3 +1,5 @@
+require 'uri'
+
 module QasHelper
   
   # Hack: puts in static images for known users to work around the lack of un-authenticated URLs
@@ -39,10 +41,10 @@ module QasHelper
                  %Q(<a href="#{segment['url']}">#{segment['text']}</a>)
                when 'Mention'
                  %Q(<a href="/users/#{segment['user']['id']}">#{segment['text']}</a>)
-               when 'Hashtag' # NEXT: run actual search - redo the search
-                 # method to use the API, return feed items and display them
-                 # this link should run the search method in qascontroller
-                 %Q(<a href="#{segment['url']}">#{segment['text']}</a>)
+               when 'Hashtag' 
+                 %Q(<a class="hashtag">#{segment['text']}</a>)
+               else
+                 # other types are tracked changes, we don't include these.
                end                  
     end 
     html 
