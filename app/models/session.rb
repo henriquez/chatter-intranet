@@ -1,6 +1,7 @@
 require 'httparty'
 require 'net/http'
 require "uri"
+require 'crack/json'
 
 class SimpleParser < HTTParty::Parser
   def parse

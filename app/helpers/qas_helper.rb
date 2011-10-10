@@ -29,10 +29,10 @@ module QasHelper
   
   # helper that takes a feedItem hash and converts it to HTML, including
   # properly structuring any included message segments like @mentions.
-  def message_segments(feeditem)
+  def message_segments(msg_segments)
     # an array of hashes - each hash a segment
     html = ''
-    feeditem['body']['messageSegments'].each do |segment|
+    msg_segments.each do |segment|
       html << case segment['type']
                when 'Text'
                  segment['text']
