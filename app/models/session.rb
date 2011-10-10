@@ -15,12 +15,11 @@ class Session
   # .bashrc must have these set in the development environment
   # on use heroku config:add GITHUB_USERNAME=joesmith to set production values
   # see http://devcenter.heroku.com/articles/config-vars
-  #### DEPLOY: CHANGE PR TO QA when pushing to production. #####
-  APP_DOMAIN = ENV['PR_DEMO_APP_DOMAIN']
+  APP_DOMAIN = ENV['QA_DEMO_APP_DOMAIN']
   
-  CLIENT_ID = ENV['PR_DEMO_KEY']
-  CLIENT_SECRET = ENV['PR_DEMO_SECRET']
-  SFDC_DOMAIN = ENV['PR_DEMO_LOGIN_URL']
+  CLIENT_ID = ENV['QA_DEMO_KEY']
+  CLIENT_SECRET = ENV['QA_DEMO_SECRET']
+  SFDC_DOMAIN = ENV['QA_DEMO_LOGIN_URL']
   VERSION = "v23.0" # Winter '12 release yo
   
   
@@ -75,7 +74,7 @@ class Session
   
   # General purpose get with error handling and retry for expired token
   def self.do_get(user, uri, noparse=nil, file=nil, filename=nil)
-    base_uri "#{user.instance_url}/services/data/#{VERSION}"
+    base_uri chatter_base_uri(user)
     Rails.logger.info "Getting uri=#{base_uri}#{uri}"
     options = { :headers => { 'Authorization'   => "OAuth #{user.access_token}",
                                'Content-Type'    => "application/json",
@@ -94,7 +93,7 @@ class Session
                } # populate options with new access token
       response = get(uri, options).response # redo the request
     elsif response.header.code != '200' # failed for some other reason
-      raise StandardError, "unknown failure getting uri with #{response.header.inspect}"
+      raise StandardError, "unknown failure getting uri with #{response.header.inspect}-#{response.body.inspect}"
     end
     if noparse
       return response.body
@@ -122,14 +121,27 @@ class Session
   # text is a string, it will get form encoded downstream
   def self.do_post(user, uri, text)
     raise PostTooLargeError, "Post may not exceed 1000 characters" if text.length > 1000
-    Rails.logger.info "Posting uri=#{uri}"
     base_uri chatter_base_uri(user)
-    options = { :headers => { 'Authorization'   => "OAuth #{user.access_token}"
+    Rails.logger.info "Posting to uri=#{base_uri}#{uri}"
+    options = { :headers => { 'Authorization'   => "OAuth #{user.access_token}",
+                               'Content-Type'    => "application/json",
+                               'X-PrettyPrint'   => "1"                       
                              }
                }
-    options.merge!( :body => { :text => text } )          
+    # if your application lets users create @mentions, then you
+    # would also use the Mentions type here.  In this case, there is 
+    # no user picker implemented, so users can't create @mentions
+    # Note that link and hastag types are automatically created by the
+    # server so clients don't need to use them.
+    options.merge!( :body => { :body => { :messageSegments => [
+                                           { :text => text,
+                                             :type => "Text" 
+                                            }
+                                                               ] 
+                                         } 
+                              }.to_json          
+                   )          
     response = post(uri, options) 
-    
     if response.header.code == "401" 
       # if exception is due to bad token(401), do refresh token flow
       user = User.qa_app_user # get the user-as-application
@@ -141,7 +153,7 @@ class Session
                } # populate options with new access token
       response = post(uri, options) # redo the request
     elsif response.header.code != '201' # failed for some other reason
-      raise StandardError, "unknown failure getting uri with #{response.header.inspect}"
+      raise StandardError, "unknown failure getting uri with #{response.header.inspect}-#{response.body.inspect}"
     end
     
     Crack::JSON.parse(response.body)               

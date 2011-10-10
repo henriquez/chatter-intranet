@@ -5,7 +5,7 @@ require 'uri'
  
 class Qa 
   
-  GROUP_ID = ENV['PR_DEMO_GROUP_ID']
+  GROUP_ID = ENV['QA_DEMO_GROUP_ID']
           
   # Poll the org and write any new feed-items with the #chatout
   # tag to the db

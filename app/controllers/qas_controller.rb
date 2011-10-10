@@ -40,17 +40,12 @@ class QasController < ApplicationController
   # Ajax call when user clicks team member list
   def team
     user = User.qa_app_user
-    # render :text => %({ "users": [
-    #                             { "name" : "Patrick Dumfy", "link": "http://#{Session::APP_DOMAIN}/users?id=005A0000001rQP6", "photo" : "/images/patrick_thumb.png" },
-    #                             { "name" : "Madison Rigby", "link": "http://#{Session::APP_DOMAIN}/users?id=005A0000001rQOr", "photo" : "/images/mrigby_thumb.png" }
-    #                           ]
-    #                   })    
-    #### DEPLOY: uncomment above and remove below
-        render :text => %({ "users": [
-                                 { "name" : "Patrick Dumfy", "link": "http://#{Session::APP_DOMAIN}/users/005x0000000K9Qa", "photo" : "/images/patrick_thumb.png" }
-                                
-                               ]
-                       })     
+    render :text => %({ "users": [
+                                { "name" : "Patrick Dumfy", "link": "http://#{Session::APP_DOMAIN}/users/005A0000001rQP6", "photo" : "/images/patrick_thumb.png" },
+                                { "name" : "Madison Rigby", "link": "http://#{Session::APP_DOMAIN}/users/005A0000001rQOr", "photo" : "/images/mrigby_thumb.png" }
+                              ]
+                      })    
+    
   end  
   
 

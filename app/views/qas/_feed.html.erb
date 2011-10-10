@@ -27,11 +27,12 @@
 					  <!-- comments -->
 					  <% chatout['comments']['comments'].each do |comment| %>
 						 <div class='user-thumb span-1'>
-						    <%= image_cheater(comment['actor']['lastName']) %>
+					
+						    <%= image_cheater(comment['user']['lastName']) %>
 						 </div>
 						<div class='comment span-10 last'>
 	
-							    <span class='user-name bold'><%= sanitize comment['actor']['name']%></span>&nbsp;
+							    <span class='user-name bold'><%= sanitize comment['user']['name']%></span>&nbsp;
 							<span class='message-body'><%= auto_link(sanitize comment['body']['text']) %></span>
 							   <br /> <span class='created-date'><%= time_ago_in_words(comment['createdDate']) %> ago</span>
 					   </div>
