@@ -25,7 +25,7 @@ class QasController < ApplicationController
     #                  :email => params[:email], 
     #                  :name => params[:name]
     @chatouts = Qa.get_record_feed(user, Qa::GROUP_ID )  # get the feed
-    render :action => 'index' # show the Q&A page again  
+    redirect_to :action => 'index' # show the Q&A page again  
   end
   
   
